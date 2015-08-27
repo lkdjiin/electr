@@ -8,7 +8,7 @@ Interactive language for electronic formulas (on the command line).
 - I have not found an open source language or calculator at the command line,
 specialized in electronic formulas
 - I'm always confused with milli, micro, pico, nano, etc
-- I prefer to type 100K than 100000, or 100M than 100000000
+- I prefer to type 100K rather than 100000, or 100M rather than 100000000
 - If, for any reason, I want to write 100000000, then I should be able to write
 100_000_000 or 100,000,000
 
@@ -19,7 +19,7 @@ a quick prototype in Ruby, as a proof of concept. And then, maybe, a more portab
 version in C.
 
 So, if you are interested, **say it out loud**. Tell me what you think on
-[twitter](https://twitter.com/lkdjiin) or open an
+[twitter](https://twitter.com/lkdjiin) or open up an
 issue here on Github. In any cases feel free to start a discussion.
 
 ## Examples
@@ -56,7 +56,6 @@ There is no symbol for the multiplication. Simply put values side by side:
 
     E> 1mA 3K
     3V
-
 
 ### Frequency of an oscillator
 
