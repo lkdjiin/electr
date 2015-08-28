@@ -65,14 +65,14 @@ a square root (`v~`) of the product of two resistors (`11K 22K`). The result
 is in Hertz.
 
     E> 1 / (2 pi 0.5uF v~(11K 22K))
-    205Hz
+    20.46Hz
 
 One are less prone to typing errors if one enter this expression spaned on two
 lines:
 
     E> 1 /
     E> 2 pi 0.5uF v~(11K 22K)
-    205Hz
+    20.46Hz
 
 ### Interactive?
 
