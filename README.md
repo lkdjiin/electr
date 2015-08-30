@@ -24,7 +24,23 @@ So, if you are interested, **say it out loud**. Tell me what you think on
 [twitter](https://twitter.com/lkdjiin) or better, open an
 issue here on Github. In any cases feel free to start a discussion.
 
-## Examples
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'electr'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install electr
+
+## Usage Examples
 
 Following are quick examples of what I have in my mind (`E> ` is the prompt of
 Electr).
@@ -72,7 +88,7 @@ One are less prone to typing errors if one enter this expression on two lines:
     E> 2 pi 0.5uF sq(11K 22K)
     20.46Hz
 
-### Beyond the calculator
+## Beyond the calculator
 
 Electr could be more **interactive**. In the following session we've got a
 resistor R1 and two capacitors C1 and C2. Once the formula is entered, Electr
@@ -101,6 +117,14 @@ Why not having functions?
 
 *The above syntax is just one possibility amongst a lot of others.*
 
+## Contributing
+
+1. Fork it ( https://github.com/[my-github-username]/electr/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
 ## Fun
 
 I like the name Electr but I thinked of some other possibilities:
@@ -125,8 +149,3 @@ Frink is closed source, so it doesn't meet my requirements. GNU Units is
 awesome and close to what I want but it's so huge and not at all specialized!
 I want to deal with ohms, farads, volts, etc and not with kilograms nor with
 furlongs ;)
-
-## Versioning
-
-I start to version this project even if there is no code yet, so readers will
-be able to spot the modifications easily in a Changelog file.
