@@ -1,3 +1,15 @@
 #!/usr/bin/env ruby
 
 require 'electr'
+
+compiler = Electr::Compiler.new
+ast = compiler.compile_to_ast(ARGV[0].dup)
+ast.display
+
+puts "---"
+
+pns = compiler.compile_to_pn(ARGV[0].dup)
+evaluator = Electr::Evaluator.new
+result = evaluator.evaluate_pn(pns)
+
+puts result
