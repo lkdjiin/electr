@@ -43,7 +43,7 @@ module Electr
     end
 
     def parse(opts)
-      opts.on(nilt, '--ast', 'Display AST and quit') do
+      opts.on(nil, '--ast', 'Display AST and quit') do
         @options[:ast] = true
       end
       opts.on('-e', '--expression EXP', 'Compute EXP and quit') do |arg|

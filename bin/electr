@@ -2,18 +2,26 @@
 
 require 'electr'
 
-# compiler = Electr::Compiler.new
-# ast = compiler.compile_to_ast(ARGV[0].dup)
-# ast.display
-
-# puts "---"
-
-# pns = compiler.compile_to_pn(ARGV[0].dup)
-# evaluator = Electr::Evaluator.new
-# result = evaluator.evaluate_pn(pns)
-
-# puts result
-
 opt = Electr::Option.new
 
-Electr::Repl.new(opt).run
+if opt[:expression]
+  if opt[:ast]
+    compiler = Electr::Compiler.new
+    ast = compiler.compile_to_ast(opt[:expression])
+    ast.display
+  else
+    # FIXME Should be under lib/ to be tested and there is a lot of
+    # common code with Repl.
+    compiler = Electr::Compiler.new
+    temp = compiler.compile_to_pn(opt[:expression])
+    evaluator = Electr::Evaluator.new
+    temp = evaluator.evaluate_pn(temp)
+    if temp == temp.truncate
+      puts temp.truncate
+    else
+      puts temp.round(10)
+    end
+  end
+else
+  Electr::Repl.new(opt).run
+end
