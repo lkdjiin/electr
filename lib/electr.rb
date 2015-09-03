@@ -5,6 +5,7 @@ require "electr/compiler"
 require "electr/ast"
 require "electr/rules"
 require "electr/evaluator"
+require "electr/repl"
 
 module Electr
 
