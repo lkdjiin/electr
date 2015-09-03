@@ -5,7 +5,7 @@ module Electr
   # The keys you are going to use:
   #
   # :ast        - Boolean, if true the user want to print the Abstract
-  #               Syntax Tree and quit.
+  #               Syntax Tree instead of the result.
   # :expression - Don't run interactively, parse this String and quit.
   #
   # Examples
@@ -43,8 +43,8 @@ module Electr
     end
 
     def parse(opts)
-      opts.on('-a', '--ast', 'Display AST and quit') do
-        @options[:without_header] = true
+      opts.on(nilt, '--ast', 'Display AST and quit') do
+        @options[:ast] = true
       end
       opts.on('-e', '--expression EXP', 'Compute EXP and quit') do |arg|
         @options[:expression] = arg

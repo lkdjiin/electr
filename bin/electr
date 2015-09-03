@@ -16,4 +16,4 @@ require 'electr'
 
 opt = Electr::Option.new
 
-Electr::Repl.new.run
+Electr::Repl.new(opt).run
