@@ -177,7 +177,7 @@ Why not having custom functions?
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/electr/fork )
+1. Fork it ( https://github.com/lkdjiin/electr/fork )
 2. **PLEASE Create your feature branch** (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
