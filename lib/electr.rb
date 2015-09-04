@@ -10,6 +10,7 @@ require "electr/evaluator"
 require "electr/repl"
 require "electr/option"
 require "electr/reader"
+require "electr/printer"
 
 module Electr
 
