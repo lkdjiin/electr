@@ -43,7 +43,7 @@ module Electr
 
     def value?(token)
       # The unit part is redondant with Tokenizer.
-      token =~ /[0-9.][kKRuFpΩμ]{1,}\Z/
+      token =~ /[0-9.][kKRuFpΩμAmWV]{1,}\Z/
     end
 
   end

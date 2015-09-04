@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - unreleased
 ### Added
+- Basic Read-Eval-Print-Loop as a proof of concept. It recognizes some
+  units but not all
+- Options -v (version), -h (help), --ast (display the AST instead of the
+  result) and -e (compute this expression and quit, do not run
+  interactively)
+- Grammar of Electr (in `grammar.md`)
+- Beginning of documentation for developers
+- Precedence table
 - This change log
-- The grammar of Electr (in `grammar.md`)
-- Documentation for developers

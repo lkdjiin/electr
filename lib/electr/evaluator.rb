@@ -43,10 +43,15 @@ module Electr
     end
 
     def do_value(str)
+      # FIXME It's going to be better to separate the check for the unit
+      # (ohm, volt, ampere, etc) and for the prefix ([m]illi, [k]ilo,
+      # etc).
       val = str.to_f
-      if str[-1] == 'k' || str[-1] == 'K' || str[-2..-1] == 'kΩ'
+      if %w( k K ).include?(str[-1]) || %w( kΩ ).include?(str[-2..-1])
         val *= 1_000
-      elsif str[-1] == 'u' || str[-1] == 'μ' || str[-2..-1] == 'μF' || str[-2..-1] == 'uF'
+      elsif %w( mA mV mW ).include?(str[-2..-1])
+        val *= 0.001
+      elsif %w( u μ ).include?(str[-1]) || %w( μF uF ).include?(str[-2..-1])
         val *= 0.000_001
       elsif str[-1] == 'p' || str[-2..-1] == 'pF'
         val *= 0.000_000_001

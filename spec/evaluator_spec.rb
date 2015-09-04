@@ -13,6 +13,11 @@ describe Evaluator do
     {code: "3 / 2", result: 1.5},
     {code: "2 11k", result: 22_000},
     {code: "sqrt(49)", result: 7},
+    {code: "3V / 25mA", result: 120},
+    {code: "110V / 2A", result: 55},
+    {code: "10mV 100R", result: 1},
+    {code: "10W 2", result: 20},
+    {code: "100mW 2", result: 0.2},
   ]
 
   specify "#evaluate_pn" do
