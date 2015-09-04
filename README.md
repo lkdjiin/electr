@@ -117,16 +117,16 @@ Electr is at a very early stage and it miss a lot of (basic) things!
 You can expect that the following features will be implemented in the
 next couple of days/weeks:
 
-[ ] Negative numbers
-[ ] `*` for the multiplication if one want to
-[ ] √ for an alternative to square root
-[ ] Floating point number without a leading zero (ie `.678`)
-[ ] More buitin functions (sin, cos, tan, etc)
-[ ] Exponent
-[ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-[ ] Readline lib in the REPL for a better user experience
-[ ] 10_000 or 10,000 will be the same as 10000
-[ ] All units and prefix used in electronic
+- [ ] Negative numbers
+- [ ] `*` for the multiplication if one want to
+- [ ] √ for an alternative to square root
+- [ ] Floating point number without a leading zero (ie `.678`)
+- [ ] More buitin functions (sin, cos, tan, etc)
+- [ ] Exponent
+- [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
+- [ ] Readline lib in the REPL for a better user experience
+- [ ] 10_000 or 10,000 will be the same as 10000
+- [ ] All units and prefix used in electronic
 
 ## What's next?
 
