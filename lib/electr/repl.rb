@@ -6,34 +6,20 @@ module Electr
              "A tiny language for electronic formulas\n\n" +
              "Hit Ctrl+C to quit Electr\n\n"
 
-    def initialize(options)
-      @options = options
+    def initialize
       puts BANNER
+      @reader = Reader.new
     end
 
     def run
-      if @options[:ast]
-        print_ast(read_ast) while true
-      else
-        _print(_eval(_read)) while true
-      end
+      _print(_eval(@reader.run)) while true
+    end
+
+    def run_ast
+      print_ast(@reader.run_ast) while true
     end
 
     private
-
-    def _read
-      print("E> ")
-      line = STDIN.gets.chomp
-      compiler = Compiler.new
-      compiler.compile_to_pn(line)
-    end
-
-    def read_ast
-      print("E--ast> ")
-      line = STDIN.gets.chomp
-      compiler = Compiler.new
-      compiler.compile_to_ast(line)
-    end
 
     def _eval(pns)
       evaluator = Evaluator.new
