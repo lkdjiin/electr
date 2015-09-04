@@ -6,18 +6,26 @@ module Electr
              "A tiny language for electronic formulas\n\n" +
              "Hit Ctrl+C to quit Electr\n\n"
 
-    def initialize
+    def initialize(reader = Reader.new, printer = printer.new)
       puts BANNER
-      @reader = Reader.new
-      @printer = Printer.new
+      @reader = reader
+      @printer = printer
     end
 
     def run
-      @printer.run(_eval(@reader.run)) while true
+      run_once while true
+    end
+
+    def run_once
+      @printer.run(_eval(@reader.run))
     end
 
     def run_ast
-      @printer.run_ast(@reader.run_ast) while true
+      run_ast_once while true
+    end
+
+    def run_ast_once
+      @printer.run_ast(@reader.run_ast)
     end
 
     private
