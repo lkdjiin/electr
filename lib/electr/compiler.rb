@@ -1,5 +1,10 @@
 module Electr
 
+  # The toolchain that takes a code at input and outputs it in another
+  # structure.
+  #
+  # The compiler could outputs the code either as an AST or as a list of
+  # element in the prefix notation.
   class Compiler
 
     def compile_to_ast(code)

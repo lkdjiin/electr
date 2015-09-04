@@ -1,5 +1,6 @@
 module Electr
 
+  # Prints the computation.
   class Printer
 
     def run(result)

@@ -1,5 +1,9 @@
 module Electr
 
+  # Rules an Electr expression.
+  #
+  # TODO For now almost everything is an expression in Electr, so this
+  # is a somewhat complicated class. It should be refactored a lot.
   class ExpressionRule < BaseRule
 
     def apply!

@@ -1,5 +1,8 @@
 module Electr
 
+  # Responsible of the terminal interface, that is printing the prompt
+  # and reading a line of code (I know, I know, there is an «and» in the
+  # description…).
   class Reader
 
     def run

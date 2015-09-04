@@ -1,5 +1,7 @@
 module Electr
 
+  # Base class for the rules. «Just» follow the grammar's rules to
+  # produce the AST.
   class BaseRule
 
     # Initialize a new rule. The units and ast_node objects

@@ -1,5 +1,6 @@
 module Electr
 
+  # The Read Eval Print Loop starting point.
   class Repl
 
     BANNER = "\nElectr version #{Electr::VERSION}\n" +

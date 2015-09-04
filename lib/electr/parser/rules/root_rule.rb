@@ -1,5 +1,8 @@
 module Electr
 
+  # Starting point for the rules.
+  #
+  # TODO Is this really needed?
   class RootRule < BaseRule
 
     def apply!

@@ -1,5 +1,6 @@
 module Electr
 
+  # Evaluate (compute) a value.
   class Evaluator
 
     def initialize

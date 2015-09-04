@@ -1,5 +1,7 @@
 module Electr
 
+  # First step of the parser. Explode a code in its constituant, ie
+  # `sqrt(3+2)` becomes the list `sqrt`, `(`, `3`, `+`, `2`, `)`.
   class Tokenizer
 
     ONE_CHAR_SYMBOLS = %w( + - / )

@@ -1,5 +1,6 @@
 module Electr
 
+  # Lexical analysis.
   class Lexer
 
     # Public: Build a LexicalUnit from a given token.

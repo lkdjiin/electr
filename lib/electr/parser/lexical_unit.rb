@@ -1,5 +1,6 @@
 module Electr
 
+  # Holds some data about a lexica unit (lexeme) of the language.
   class LexicalUnit
 
     private_class_method :new

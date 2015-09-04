@@ -1,5 +1,6 @@
 module Electr
 
+  # Base class for the abstract syntax tree.
   class AST
 
     def initialize(name)
