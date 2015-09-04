@@ -45,16 +45,6 @@ module Electr
       end
     end
 
-    # A shortcut method to #accept. Usefull when we have several calls
-    # to #accept. Calls #accept for each of the symbol in args.
-    #
-    # args - A series of Symbol.
-    #
-    # Returns nothing.
-    def accept_all(*args)
-      args.each {|arg| accept(arg) }
-    end
-
   end
 end
 

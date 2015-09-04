@@ -47,10 +47,6 @@ module Electr
       @type == :fname
     end
 
-    def fcall?
-      @type == :fcall
-    end
-
     def number?
       numeric? || constant? || value?
     end

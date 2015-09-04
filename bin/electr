@@ -23,5 +23,9 @@ if opt[:expression]
     end
   end
 else
-  Electr::Repl.new(opt).run
+  if opt[:ast]
+    Electr::Repl.new.run_ast
+  else
+    Electr::Repl.new.run
+  end
 end

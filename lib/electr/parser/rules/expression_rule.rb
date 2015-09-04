@@ -32,18 +32,6 @@ module Electr
 
     private
 
-    def first_unit_number?
-      @units.first && @units.first.number?
-    end
-
-    def first_unit_numeric?
-      @units.first && @units.first.numeric?
-    end
-
-    def first_unit_operator?
-      @units.first && @units.first.operator?
-    end
-
     def first_unit_fname?
       @units.first && @units.first.fname?
     end
