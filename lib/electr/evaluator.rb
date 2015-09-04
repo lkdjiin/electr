@@ -9,7 +9,7 @@ module Electr
     def evaluate_pn(list)
       while item = list.pop
         case item.name
-        when "numeric" then @stack.push(item.value.to_f)
+        when "numeric" then @stack.push(item.to_f)
         when "constant" then @stack.push(constant(item.value))
         when "value" then do_value(item.value)
         when "operator" then operation(item.value)

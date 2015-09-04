@@ -57,6 +57,10 @@ module Electr
     end
 
     attr_reader :value, :name
+
+    def to_f
+      value.tr(',', '_').to_f
+    end
   end
 
 end
