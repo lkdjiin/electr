@@ -1,0 +1,3 @@
+:excludes:
+- lib/electr/version.rb
+- lib/electr/option.rb
