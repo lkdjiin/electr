@@ -10,9 +10,8 @@ module Electr
     def compile_to_ast(code)
       units = []
       tokenizer = Tokenizer.new(code)
-      lexer = Lexer.new
       while tokenizer.has_more_token?
-        units << lexer.lexify(tokenizer.next_token)
+        units << Lexer.lexify(tokenizer.next_token)
       end
 
       syntaxer = Syntaxer.new(units.dup)

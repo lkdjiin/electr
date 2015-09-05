@@ -1,4 +1,5 @@
 require "electr/parser/tokenizer"
+require "electr/parser/token"
 require "electr/parser/lexer"
 require "electr/parser/lexical_unit"
 require "electr/parser/syntaxer"

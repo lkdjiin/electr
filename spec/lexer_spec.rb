@@ -3,7 +3,6 @@ require 'spec_helper'
 include Electr
 
 describe Lexer do
-  before { @lexer = Lexer.new }
 
   TOKENS = [
     [ :numeric, "123" ],
@@ -20,7 +19,7 @@ describe Lexer do
 
   it "lexify" do
     TOKENS.each do |token|
-      lexeme = @lexer.lexify(token.last)
+      lexeme = Lexer.lexify(token.last)
       expect(lexeme.type).to eq token.first
       expect(lexeme.value).to eq token.last
     end
