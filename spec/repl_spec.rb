@@ -5,9 +5,9 @@ include Electr
 class TestReader
   def run
     [
-      AST::Pn.new('+', 'operator'),
-      AST::Pn.new('1', 'numeric'),
-      AST::Pn.new('2', 'numeric')
+      Pn.new('+', 'operator'),
+      Pn.new('1', 'numeric'),
+      Pn.new('2', 'numeric')
     ]
   end
 end

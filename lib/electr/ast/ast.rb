@@ -59,6 +59,7 @@ module Electr
 
   end
 
+  # Element of a prefix notation.
   # TODO Pn is not a good name!
   class Pn
 
