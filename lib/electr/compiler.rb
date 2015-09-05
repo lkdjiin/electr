@@ -16,7 +16,7 @@ module Electr
       end
 
       syntaxer = Syntaxer.new(units.dup)
-      ast = syntaxer.run
+      syntaxer.run
     end
 
     # To Prefix Notation.
