@@ -6,7 +6,7 @@ module Electr
   # is a somewhat complicated class. It should be refactored a lot.
   class ExpressionRule < BaseRule
 
-    def apply!
+    def apply
       while @units.size > 0
         if first_unit_fname?
           accept(:fname)

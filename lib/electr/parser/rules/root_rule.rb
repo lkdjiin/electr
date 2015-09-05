@@ -5,10 +5,10 @@ module Electr
   # TODO Is this really needed?
   class RootRule < BaseRule
 
-    def apply!
+    def apply
       root_node = RootAST.new
       while more_units?
-        ExpressionRule.new(@units, root_node).apply!
+        ExpressionRule.new(@units, root_node).apply
       end
       @ast_node.add_child(root_node)
     end

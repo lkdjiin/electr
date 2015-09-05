@@ -13,7 +13,7 @@ module Electr
     #
     # Returns the AST.
     def run
-      RootRule.new(@units, @ast).apply!
+      RootRule.new(@units, @ast).apply
       @ast
     end
 

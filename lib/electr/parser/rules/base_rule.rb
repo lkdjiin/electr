@@ -5,7 +5,7 @@ module Electr
   class BaseRule
 
     # Initialize a new rule. The units and ast_node objects
-    # given in arguments will be modified by #apply!.
+    # given in arguments will be modified by #apply.
     #
     # units    - Array of LexicalUnits.
     # ast_node - An AST object, for adding children, etc.
@@ -16,9 +16,9 @@ module Electr
     end
 
     # Public: Apply the rule to the list of lexical units, creating
-    # and/or modifying the ast node. #apply! modify the units and
+    # and/or modifying the ast node. #apply modify the units and
     # ast_node objects given to #initialize.
-    def apply!
+    def apply
       raise NotImplementedError
     end
 

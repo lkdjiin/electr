@@ -6,7 +6,7 @@ describe BaseRule do
 
   it "is not implemented" do
     expect {
-      BaseRule.new(nil, nil).apply!
+      BaseRule.new(nil, nil).apply
     }.to raise_error(NotImplementedError)
   end
 
