@@ -1,14 +1,13 @@
 require 'spec_helper'
-require 'ostruct'
 
 include Electr
 
 class TestReader
   def run
     [
-      OpenStruct.new(value: '+', name: 'operator'),
-      OpenStruct.new(value: 1, name: 'numeric'),
-      OpenStruct.new(value: 2, name: 'numeric')
+      AST::Pn.new('+', 'operator'),
+      AST::Pn.new('1', 'numeric'),
+      AST::Pn.new('2', 'numeric')
     ]
   end
 end
