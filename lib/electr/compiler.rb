@@ -7,7 +7,7 @@ module Electr
   # element in the prefix notation.
   class Compiler
 
-    def compile_to_ast(code)
+    def self.compile_to_ast(code)
       units = []
       tokenizer = Tokenizer.new(code)
       while tokenizer.has_more_token?
@@ -19,8 +19,8 @@ module Electr
     end
 
     # To Prefix Notation.
-    def compile_to_pn(code)
-      ast = compile_to_ast(code)
+    def self.compile_to_pn(code)
+      ast = self.compile_to_ast(code)
       ast.to_pn
     end
 

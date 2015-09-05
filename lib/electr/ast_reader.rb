@@ -10,7 +10,7 @@ module Electr
 
     def run
       prompt
-      Compiler.new.compile_to_ast(STDIN.gets.chomp)
+      Compiler.compile_to_ast(STDIN.gets.chomp)
     end
 
   end

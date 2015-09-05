@@ -24,8 +24,7 @@ describe Evaluator do
 
   specify "#evaluate_pn" do
     CODES_TO_EVAL.each do |code|
-      compiler = Compiler.new
-      pns = compiler.compile_to_pn(code[:code])
+      pns = Compiler.compile_to_pn(code[:code])
 
       evaluator = Evaluator.new
       result = evaluator.evaluate_pn(pns)
@@ -35,8 +34,7 @@ describe Evaluator do
   end
 
   specify do
-    compiler = Compiler.new
-    pns = compiler.compile_to_pn("1 - 1 + 4 - 1 - 1")
+    pns = Compiler.compile_to_pn("1 - 1 + 4 - 1 - 1")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)

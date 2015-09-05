@@ -9,7 +9,7 @@ module Electr
 
     def run
       prompt
-      Compiler.new.compile_to_pn(STDIN.gets.chomp)
+      Compiler.compile_to_pn(STDIN.gets.chomp)
     end
 
   end

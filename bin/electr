@@ -6,14 +6,12 @@ opt = Electr::Option.new
 
 if opt[:expression]
   if opt[:ast]
-    compiler = Electr::Compiler.new
-    ast = compiler.compile_to_ast(opt[:expression])
+    ast = Electr::Compiler.compile_to_ast(opt[:expression])
     ast.display
   else
     # FIXME Should be under lib/ to be tested and there is a lot of
     # common code with Repl.
-    compiler = Electr::Compiler.new
-    temp = compiler.compile_to_pn(opt[:expression])
+    temp = Electr::Compiler.compile_to_pn(opt[:expression])
     evaluator = Electr::Evaluator.new
     temp = evaluator.evaluate_pn(temp)
     if temp == temp.truncate
