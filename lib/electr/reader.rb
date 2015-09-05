@@ -1,30 +1,15 @@
 module Electr
 
-  # Responsible of the terminal interface, that is printing the prompt
-  # and reading a line of code (I know, I know, there is an «and» in the
-  # description…).
-  class Reader
+  # Normal reader for the REPL.
+  class Reader < BaseReader
+
+    def initialize
+      super("E> ")
+    end
 
     def run
-      prompt("E> ")
-      compiler = Compiler.new
-      compiler.compile_to_pn(get_line)
-    end
-
-    def run_ast
-      prompt("E--ast> ")
-      compiler = Compiler.new
-      compiler.compile_to_ast(get_line)
-    end
-
-    private
-
-    def prompt(str)
-      print(str)
-    end
-
-    def get_line
-      STDIN.gets.chomp
+      prompt
+      Compiler.new.compile_to_pn(STDIN.gets.chomp)
     end
 
   end

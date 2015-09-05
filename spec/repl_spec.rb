@@ -11,31 +11,23 @@ class TestReader
       OpenStruct.new(value: 2, name: 'numeric')
     ]
   end
-  def run_ast
-    "foobar"
-  end
 end
 
 class TestPrinter
-  def run(arg)
+  def self.run(arg)
     arg
   end
-  alias_method :run_ast, :run
 end
 
 describe Repl do
 
   describe "#run" do
+
     it 'runs the toolchain' do
-      repl = Repl.new(TestReader.new, TestPrinter.new)
+      repl = Repl.new(TestReader.new, Evaluator.new, TestPrinter)
       expect(repl.run_once).to eq 3
     end
+
   end
 
-  describe "#run_ast" do
-    it 'runs the toolchain' do
-      repl = Repl.new(TestReader.new, TestPrinter.new)
-      expect(repl.run_ast_once).to eq 'foobar'
-    end
-  end
 end

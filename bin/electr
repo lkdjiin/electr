@@ -24,7 +24,8 @@ if opt[:expression]
   end
 else
   if opt[:ast]
-    Electr::Repl.new.run_ast
+    Electr::Repl.new(Electr::ASTReader.new, Electr::NilEvaluator.new,
+                     Electr::ASTPrinter).run
   else
     Electr::Repl.new.run
   end

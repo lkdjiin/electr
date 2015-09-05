@@ -3,16 +3,9 @@ module Electr
   # Prints the computation.
   class Printer
 
-    def run(result)
-      if result == result.truncate
-        puts result.truncate
-      else
-        puts result.round(10)
-      end
-    end
-
-    def run_ast(ast)
-      ast.display
+    def self.run(result)
+      truncated = result.truncate
+      puts result == truncated ? truncated : result.round(10)
     end
 
   end
