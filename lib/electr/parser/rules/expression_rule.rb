@@ -46,13 +46,13 @@ module Electr
 
     def dig_series(node)
       while unit = @series.shift
-        if unit && unit.numeric? && node.size < 2
+        if unit && unit.numeric? && there_is_room?(node)
           node.add_child(NumericAST.new(unit.value))
-        elsif unit && unit.constant? && node.size < 2
+        elsif unit && unit.constant? && there_is_room?(node)
           node.add_child(ConstantAST.new(unit.value))
-        elsif unit && unit.value? && node.size < 2
+        elsif unit && unit.value? && there_is_room?(node)
           node.add_child(ValueAST.new(unit.value))
-        elsif unit && unit.fname? && node.size < 2
+        elsif unit && unit.fname? && there_is_room?(node)
           func      = FuncAST.new
           func_name = FuncNameAST.new(unit.value)
           func_args = FuncArgsAST.new
@@ -69,6 +69,11 @@ module Electr
           break
         end
       end
+    end
+
+    def there_is_room?(node)
+      (node.value == UNARY_MINUS_INTERNAL_SYMBOL && node.size < 1) ||
+      (node.value != UNARY_MINUS_INTERNAL_SYMBOL && node.size < 2)
     end
 
   end

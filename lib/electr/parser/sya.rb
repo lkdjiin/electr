@@ -6,18 +6,10 @@ module Electr
   # polish notation to ease producing the AST.
   class Sya
 
-    PRECEDENCE = {
-      '()' => {assoc: 'L', val: 99},
-      ')'  => {assoc: 'L', val: 99},
-      '('  => {assoc: 'L', val: 99},
-      '*'  => {assoc: 'L', val: 10},
-      '/'  => {assoc: 'L', val: 10},
-      '-'  => {assoc: 'L', val:  1},
-      '+'  => {assoc: 'L', val:  1},
-    }
-
+    # Creates a new Sya.
+    #
     # lexical_units - Array of LexicalUnit in the order they have been
-    #                 parsed (natural ordering).
+    #                 parsed (natural/infix ordering).
     def initialize(lexical_units)
       @units = lexical_units
       insert_multiplication
@@ -25,7 +17,7 @@ module Electr
       @operator = []
     end
 
-    # Run the Shunting Yard Algorithm.
+    # Public: Run the Shunting Yard Algorithm.
     #
     # Returns Array of LexicalUnit ordered with prefix notation.
     def run
@@ -87,18 +79,27 @@ module Electr
     #
     # Returns nothing.
     def insert_multiplication
-      temp = []
+      new_units = []
       while unit = @units.shift
-        temp << unit
-        if @units.first
-          if (@units.first.number? && unit.number?) ||
-             (@units.first.open_parenthesis? && unit.number?) ||
-             (@units.first.fname? && unit.number?)
-            temp << LexicalUnit.operator('*')
-          end
+        new_units << unit
+        if maybe_insertion_needed?(unit)
+          new_units << LexicalUnit.operator('*') if insertion_needed?
         end
       end
-      @units = temp
+      @units = new_units
+    end
+
+    def maybe_insertion_needed?(unit)
+      unit_ahead && unit.number?
+    end
+
+    def insertion_needed?
+      unit_ahead.number? || unit_ahead.open_parenthesis? ||
+      unit_ahead.fname? || unit_ahead.unary_minus?
+    end
+
+    def unit_ahead
+      @units.first
     end
 
   end

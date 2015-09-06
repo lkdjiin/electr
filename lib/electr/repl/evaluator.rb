@@ -38,6 +38,19 @@ module Electr
     end
 
     def operation(operand)
+      if operand == UNARY_MINUS_INTERNAL_SYMBOL
+        unary_minus
+      else
+        classic_operation(operand)
+      end
+    end
+
+    def unary_minus
+      a = @stack.pop
+      @stack.push(-a)
+    end
+
+    def classic_operation(operand)
       a = @stack.pop
       b = @stack.pop
       @stack.push(a.send(operand, b))

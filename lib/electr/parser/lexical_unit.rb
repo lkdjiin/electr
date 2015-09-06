@@ -7,6 +7,8 @@ module Electr
 
     attr_reader :type, :value
 
+    # Create a new LexicalUnit.
+    #
     # type  - Symbol
     # value - String
     def initialize(type, value)
@@ -34,6 +36,10 @@ module Electr
 
     def operator?
       @type == :operator
+    end
+
+    def unary_minus?
+      operator? && @value == UNARY_MINUS_INTERNAL_SYMBOL
     end
 
     def constant?

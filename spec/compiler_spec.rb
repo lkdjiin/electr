@@ -16,6 +16,7 @@ describe Compiler do
     "sqrt(40 + 9)",
     "3 (2 + 1)",
     "2 sqrt(3)",
+    "2 pi 0.5uF sqrt(11K 22K)",
   ]
 
   specify "#compile_to_ast" do
@@ -26,7 +27,7 @@ describe Compiler do
   end
 
   specify do
-    result = Compiler.compile_to_ast("2 pi 0.5uF sqrt(11K 22K)")
+    result = Compiler.compile_to_ast("-pi 2")
     result.display
     expect(result).to be_a AST
   end

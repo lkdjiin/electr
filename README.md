@@ -117,11 +117,11 @@ Electr is at a very early stage and it miss a lot of (basic) things!
 You can expect that the following features will be implemented in the
 next couple of days/weeks:
 
-- [ ] Negative numbers
+- [x] Negative numbers
 - [ ] `*` for the multiplication if one want to
 - [ ] √ for an alternative to square root
 - [x] Floating point number without a leading zero (ie `.678`)
-- [ ] More buitin functions (sin, cos, tan, etc)
+- [ ] More builtin functions (sin, cos, tan, etc)
 - [ ] Exponent
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
 - [ ] Readline lib in the REPL for a better user experience

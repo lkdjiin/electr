@@ -19,6 +19,33 @@ describe Tokenizer do
     end
   end
 
+  specify "21" do
+    tkr = Tokenizer.new("21")
+    expect(tkr.next_token).to eq "21"
+  end
+
+  specify "-21" do
+    tkr = Tokenizer.new("-21")
+    expect(tkr.next_token).to eq "-21"
+  end
+
+  specify "-.1" do
+    tkr = Tokenizer.new("-.1")
+    expect(tkr.next_token).to eq "-.1"
+  end
+
+  specify "- 21" do
+    tkr = Tokenizer.new("- 21")
+    expect(tkr.next_token).to eq "-"
+    expect(tkr.next_token).to eq "21"
+  end
+
+  specify "- .1" do
+    tkr = Tokenizer.new("- .1")
+    expect(tkr.next_token).to eq "-"
+    expect(tkr.next_token).to eq ".1"
+  end
+
   specify "21 300" do
     tkr = Tokenizer.new("21 300")
     expect(tkr.next_token).to eq "21"
@@ -56,10 +83,46 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "3"
   end
 
+  specify "2 + -3" do
+    tkr = Tokenizer.new("2 + -3")
+    expect(tkr.next_token).to eq "2"
+    expect(tkr.next_token).to eq "+"
+    expect(tkr.next_token).to eq "-3"
+  end
+
   specify "2 pi" do
     tkr = Tokenizer.new("2 pi")
     expect(tkr.next_token).to eq "2"
     expect(tkr.next_token).to eq "pi"
+  end
+
+  specify "pi" do
+    tkr = Tokenizer.new("pi")
+    expect(tkr.next_token).to eq "pi"
+  end
+
+  specify "-pi" do
+    tkr = Tokenizer.new("-pi")
+    expect(tkr.next_token).to eq UNARY_MINUS_INTERNAL_SYMBOL
+    expect(tkr.next_token).to eq "pi"
+  end
+
+  specify "2 -pi" do
+    tkr = Tokenizer.new("2 -pi")
+    expect(tkr.next_token).to eq "2"
+    expect(tkr.next_token).to eq UNARY_MINUS_INTERNAL_SYMBOL
+    expect(tkr.next_token).to eq "pi"
+  end
+
+  specify "-2V" do
+    tkr = Tokenizer.new("-2V")
+    expect(tkr.next_token).to eq "-2V"
+  end
+
+  specify "-sqrt(7)" do
+    tkr = Tokenizer.new("-sqrt(7)")
+    expect(tkr.next_token).to eq UNARY_MINUS_INTERNAL_SYMBOL
+    expect(tkr.next_token).to eq "sqrt"
   end
 
   specify "11K 22k 33kΩ" do
@@ -107,6 +170,15 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "11K"
     expect(tkr.next_token).to eq "22K"
     expect(tkr.next_token).to eq ")"
+    expect(tkr.next_token).to eq ")"
+  end
+
+  specify "-(2 3)" do
+    tkr = Tokenizer.new("-(2 3)")
+    expect(tkr.next_token).to eq UNARY_MINUS_INTERNAL_SYMBOL
+    expect(tkr.next_token).to eq "("
+    expect(tkr.next_token).to eq "2"
+    expect(tkr.next_token).to eq "3"
     expect(tkr.next_token).to eq ")"
   end
 

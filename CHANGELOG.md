@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - unreleased
 ### Added
+- Electr supports negative numbers
 - Coco, a code coverage tool as a developer dependency
 ### Modified
 - One can write floating point number without a leading zero (ie `.678`).

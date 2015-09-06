@@ -1,3 +1,4 @@
 :excludes:
 - lib/electr/version.rb
 - lib/electr/option.rb
+:always_run: false

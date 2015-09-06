@@ -47,6 +47,17 @@ describe Sya do
     expect(sya.run).to eq [added, a, b]
   end
 
+  specify '2 -pi' do
+    a = LexicalUnit.numeric('2')
+    b = LexicalUnit.operator(UNARY_MINUS_INTERNAL_SYMBOL)
+    c = LexicalUnit.constant('pi')
+    added = LexicalUnit.operator('*')
+    sya = Sya.new([a, b, c])
+
+    # * 2 um pi
+    expect(sya.run).to eq [added, a, b, c]
+  end
+
   specify '2 11K' do
     a = LexicalUnit.numeric('2')
     b = LexicalUnit.constant('11K')
@@ -148,6 +159,30 @@ describe Sya do
 
     # sqrt + 40 9
     expect(sya.run).to eq [a, d, c, e]
+  end
+
+  specify 'um pi' do
+    a = LexicalUnit.operator(UNARY_MINUS_INTERNAL_SYMBOL)
+    b = LexicalUnit.constant('pi')
+    sya = Sya.new([a, b])
+
+    # Note that the symbol used internally isn't `-`.
+    # - pi
+    expect(sya.run).to eq [a, b]
+  end
+
+  specify 'um sqrt(49) + 1' do
+    a = LexicalUnit.operator(UNARY_MINUS_INTERNAL_SYMBOL)
+    b = LexicalUnit.fname('sqrt')
+    c = LexicalUnit.open_parenthesis
+    d = LexicalUnit.numeric('49')
+    e = LexicalUnit.closed_parenthesis
+    f = LexicalUnit.operator('+')
+    g = LexicalUnit.numeric('1')
+    sya = Sya.new([a, b, c, d, e, f, g])
+
+    # + um sqrt 49 1
+    expect(sya.run).to eq [f, a, b, d, g]
   end
 
 end

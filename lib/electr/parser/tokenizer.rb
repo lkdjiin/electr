@@ -1,11 +1,22 @@
 module Electr
 
-  # First step of the parser. Explode a code in its constituant, ie
-  # `sqrt(3+2)` becomes the list `sqrt`, `(`, `3`, `+`, `2`, `)`.
+  # The tokenizer is the first step of the parser. It explodes a code in
+  # its constituants (token), ie # `sqrt(3+2)` becomes the following
+  # list of tokens:
+  #
+  # - `sqrt`
+  # - `(`
+  # - `3`
+  # - `+`
+  # - `2`
+  # - `)`
   class Tokenizer
 
     ONE_CHAR_SYMBOLS = %w( + - / )
 
+    # Create a new Tokenizer for a specific code.
+    #
+    # string - The String code to tokenize.
     def initialize(string)
       @index = 0
       @token = ''
@@ -14,10 +25,16 @@ module Electr
       forward_look_ahead
     end
 
+    # Public: Check if the tokenizer is able to give another token.
+    #
+    # Returns Boolean true if there is another waiting token.
     def has_more_token?
       @index <= @codeline.size
     end
 
+    # Public: Get the next token.
+    #
+    # Returns a String token.
     def next_token
       ret = produce_next_token
       skip_white
@@ -32,9 +49,16 @@ module Electr
       @index += 1
     end
 
+    def add_look_ahead
+      @token << @look_ahead
+      forward_look_ahead
+    end
+
     def produce_next_token
-      if @look_ahead =~ /[0-9.]/
+      if begin_like_number?
         get_number
+      elsif unary_minus?
+        get_unary_minus
       elsif ONE_CHAR_SYMBOLS.include?(@look_ahead)
         add_this_char
       elsif @look_ahead == '('
@@ -50,17 +74,31 @@ module Electr
       forward_look_ahead while @look_ahead == ' '
     end
 
+    def begin_like_number?
+      @look_ahead =~ /[0-9.]/ ||
+      (@look_ahead == '-' && @codeline[@index] =~ /[0-9.]/)
+    end
+
+    def unary_minus?
+      # We are able to recognize the unary minus operator only when it
+      # is followed by a name (constant or function) or an open
+      # parenthesis.
+      @look_ahead == '-' && @codeline[@index] =~ /[a-z\(]/
+    end
+
+    def get_unary_minus
+      @look_ahead = UNARY_MINUS_INTERNAL_SYMBOL
+      add_look_ahead
+      @token
+    end
+
     def get_number
+      add_look_ahead if @look_ahead == '-'
       add_look_ahead while @look_ahead =~ /[0-9.]/
       if @token[-1] != '.'
         add_look_ahead while @look_ahead =~ /[kKRuFpΩμAmWV]/
       end
       @token
-    end
-
-    def add_look_ahead
-      @token << @look_ahead
-      forward_look_ahead
     end
 
     def get_word

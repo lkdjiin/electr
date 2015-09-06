@@ -22,3 +22,13 @@
 
     (* operators *)
     op         = `-` | `+` |  `/`;
+
+## Precisions
+
+### Negative numbers
+
+`-123` is a negative number.<br/>
+`- 123` is not.
+
+This is because the multiplication is implicit, ie `2 - 3` equals `-1` and
+`2 -3` equals `-6`.

@@ -1,6 +1,9 @@
 module Electr
 
   # A Syntaxer transform a list of lexical units into an AST.
+  #
+  # There isn't a monolithic class that does this work. There is
+  # actually some rule's classes to make the AST.
   class Syntaxer
 
     # lexical_units - Array of LexicalUnits

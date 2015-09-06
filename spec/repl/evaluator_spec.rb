@@ -21,6 +21,15 @@ describe Evaluator do
     {code: "1u", result: 0.000_001},
     {code: "1pF", result: 0.000_000_001},
     {code: ".12 .5", result: 0.06},
+    {code: "-.12 .5", result: -0.06},
+    {code: "-2 -3", result: 6},
+    {code: "2 -3V", result: -6},
+    {code: "-sqrt(49)", result: -7},
+    {code: "-pi", result: -Math::PI},
+    {code: "-pi 2", result: -(2 * Math::PI)},
+    {code: "2 -pi", result: -(2 * Math::PI)},
+    {code: "1 - 1 + 4 - 1 - 1", result: 2},
+    {code: "-(2 3)", result: -6},
   ]
 
   specify "#evaluate_pn" do
@@ -35,12 +44,12 @@ describe Evaluator do
   end
 
   specify do
-    pns = Compiler.compile_to_pn("1 - 1 + 4 - 1 - 1")
+    pns = Compiler.compile_to_pn("-(2 3)")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq 2
+    expect(result).to eq -6
   end
 
 
