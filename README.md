@@ -120,7 +120,7 @@ next couple of days/weeks:
 - [ ] Negative numbers
 - [ ] `*` for the multiplication if one want to
 - [ ] √ for an alternative to square root
-- [ ] Floating point number without a leading zero (ie `.678`)
+- [x] Floating point number without a leading zero (ie `.678`)
 - [ ] More buitin functions (sin, cos, tan, etc)
 - [ ] Exponent
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)

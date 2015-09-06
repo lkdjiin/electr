@@ -31,6 +31,17 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "0.6"
   end
 
+  specify ".6" do
+    tkr = Tokenizer.new(".6")
+    expect(tkr.next_token).to eq ".6"
+  end
+
+  specify "2 .6" do
+    tkr = Tokenizer.new("2 .6")
+    expect(tkr.next_token).to eq "2"
+    expect(tkr.next_token).to eq ".6"
+  end
+
   specify "2 0.6 3" do
     tkr = Tokenizer.new("2 0.6 3")
     expect(tkr.next_token).to eq "2"

@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased] - unreleased
 ### Added
 - Coco, a code coverage tool as a developer dependency
+### Modified
+- One can write floating point number without a leading zero (ie `.678`).
 
 ## [0.0.2] - 2015-09-04
 ### Added

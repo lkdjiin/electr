@@ -2,19 +2,23 @@
 
     expression = [`(`], number {[op] expression}, [`)`];
 
-    number     = numeric | value | constant | fcall;
+    number     = numeric | value | constant | f-call;
 
-    numeric    = ? integer or floating point ?;
+    numeric    = integer | float;
+
+    integer    = ? integer ?;
+
+    float      = ? floating point number ?;
 
     value      = ? integer or floating point directly followed by a unit ?;
 
     constant   = `pi`;
 
     (* function call *)
-    fcall      = fname, `(`, expression, `)`;
+    f-call     = f-name, `(`, expression, `)`;
 
     (* function name *)
-    fname      = ? regexp: [a-z]{1,} ?;
+    f-name     = ? regexp: [a-z]{1,} ?;
 
     (* operators *)
     op         = `-` | `+` |  `/`;

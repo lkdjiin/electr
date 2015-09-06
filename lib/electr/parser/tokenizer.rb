@@ -33,7 +33,7 @@ module Electr
     end
 
     def produce_next_token
-      if @look_ahead =~ /[0-9]/
+      if @look_ahead =~ /[0-9.]/
         get_number
       elsif ONE_CHAR_SYMBOLS.include?(@look_ahead)
         add_this_char

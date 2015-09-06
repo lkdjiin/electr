@@ -7,6 +7,7 @@ describe Lexer do
   TOKENS = [
     [ :numeric, "123" ],
     [ :numeric, "0.6" ],
+    [ :numeric, ".6" ],
     [ :operator, "+" ],
     [ :constant, "pi" ],
     [ :value, "11K" ],

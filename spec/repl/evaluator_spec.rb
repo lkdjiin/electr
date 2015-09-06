@@ -20,6 +20,7 @@ describe Evaluator do
     {code: "100mW 2", result: 0.2},
     {code: "1u", result: 0.000_001},
     {code: "1pF", result: 0.000_000_001},
+    {code: ".12 .5", result: 0.06},
   ]
 
   specify "#evaluate_pn" do
