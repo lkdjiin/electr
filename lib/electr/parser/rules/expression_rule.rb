@@ -23,8 +23,7 @@ module Electr
       sya = Sya.new(@series.dup)
       @series = sya.run
 
-      if @series.first.numeric? || @series.first.constant? ||
-         @series.first.value? || @series.first.fname?
+      if number?
         dig_series(@ast_node)
       else
         unit = @series.shift
@@ -35,6 +34,11 @@ module Electr
     end
 
     private
+
+    def number?
+      first = @series.first
+      first.numeric? || first.constant? || first.value? || first.fname?
+    end
 
     def first_unit_fname?
       @units.first && @units.first.fname?

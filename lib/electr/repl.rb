@@ -1,28 +1,8 @@
-module Electr
-
-  # The Read Eval Print Loop starting point.
-  class Repl
-
-    BANNER = "\nElectr version #{Electr::VERSION}\n" +
-             "A tiny language for electronic formulas\n\n" +
-             "Hit Ctrl+C to quit Electr\n\n"
-
-    def initialize(reader = Reader.new,
-                   evaluator = Evaluator.new,
-                   printer = Printer)
-      @reader = reader
-      @eval = evaluator
-      @printer = printer
-    end
-
-    def run
-      puts BANNER
-      run_once while true
-    end
-
-    def run_once
-      @printer.run(@eval.evaluate_pn(@reader.run))
-    end
-
-  end
-end
+require "electr/repl/evaluator"
+require "electr/repl/nil_evaluator"
+require "electr/repl/base_reader"
+require "electr/repl/reader"
+require "electr/repl/ast_reader"
+require "electr/repl/printer"
+require "electr/repl/ast_printer"
+require "electr/repl/repl"
