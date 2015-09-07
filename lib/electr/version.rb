@@ -1,3 +1,3 @@
 module Electr
-  VERSION = "0.0.3-alpha"
+  VERSION = "0.0.3"
 end

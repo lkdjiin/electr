@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 10,000 and 10_000 are the same as 10000
 - Electr supports negative numbers
 - Coco, a code coverage tool as a developer dependency
+- Enable Travis Continuous Integration tool
 ### Modified
 - One can write floating point number without a leading zero (ie `.678`).
 

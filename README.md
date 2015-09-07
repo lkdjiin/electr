@@ -1,5 +1,4 @@
-Electr
-======
+# Electr [![Gem Version](https://badge.fury.io/rb/electr.png)](http://badge.fury.io/rb/electr)
 
 Interactive language for electronic formulas.
 
