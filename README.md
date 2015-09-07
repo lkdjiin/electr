@@ -1,4 +1,4 @@
-# Electr [![Gem Version](https://badge.fury.io/rb/electr.png)](http://badge.fury.io/rb/electr)
+# Electr [![Gem Version](https://badge.fury.io/rb/electr.png)](http://badge.fury.io/rb/electr) [![Build Status](https://travis-ci.org/lkdjiin/electr.png)](https://travis-ci.org/lkdjiin/electr)
 
 Interactive language for electronic formulas.
 
