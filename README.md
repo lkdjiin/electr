@@ -124,7 +124,7 @@ next couple of days/weeks:
 - [ ] More builtin functions (sin, cos, tan, etc)
 - [ ] Exponent
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-- [ ] Readline lib in the REPL for a better user experience
+- [x] Readline lib in the REPL for a better user experience
 - [ ] All units and prefix used in electronic
 
 ## What's next?
@@ -193,3 +193,7 @@ Frink is closed source, so it doesn't meet my requirements. GNU Units is
 awesome and close to what I want but it's so huge and not at all specialized!
 I want to deal with ohms, farads, volts, etc and not with kilograms nor with
 furlongs ;)
+
+## License
+
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)

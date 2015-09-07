@@ -1,4 +1,5 @@
 require "optparse"
+require "readline"
 
 require "electr/version"
 require "electr/exceptions"
