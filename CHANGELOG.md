@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - unreleased
 ### Added
+- Quit gracefuly with Ctrl-C
 - Electr supports negative numbers
 - Coco, a code coverage tool as a developer dependency
 ### Modified

@@ -2,6 +2,8 @@
 
 require 'electr'
 
+trap("INT") { puts "\nBye."; exit }
+
 opt = Electr::Option.new
 
 if opt[:expression]
