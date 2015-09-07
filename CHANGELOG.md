@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - unreleased
+### Added
+- Using the [readline library][readline]
+- There's now a branch «development» on Github
+[readline]: https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
 ### Modified
 - In order to use the readline library the license of Electr switch from
   MIT to [Apache 2.0][apache2]

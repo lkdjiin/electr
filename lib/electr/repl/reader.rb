@@ -3,13 +3,13 @@ module Electr
   # Normal reader for the REPL.
   class Reader < BaseReader
 
-    def initialize
-      super("E> ")
+    def initialize(readline_lib = Readline)
+      super("E> ", readline_lib)
     end
 
     def run
-      prompt
-      Compiler.compile_to_pn(STDIN.gets.chomp)
+      line = @readline.readline(@prompt, true)
+      Compiler.compile_to_pn(line)
     end
 
   end

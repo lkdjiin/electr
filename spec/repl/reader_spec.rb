@@ -2,15 +2,18 @@ require 'spec_helper'
 
 include Electr
 
+class TestReadline
+  def self.readline(a, b)
+    print a
+    "2 3"
+  end
+end
+
 describe Reader do
 
   describe ".run" do
 
-    before do
-      allow(STDIN).to receive(:gets).and_return("2 3\n")
-    end
-
-    let(:reader) { Reader.new }
+    let(:reader) { Reader.new(TestReadline) }
 
     it 'compiles the expression from STDIN' do
       expect(reader.run.first.name).to eq 'ast'

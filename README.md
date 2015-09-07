@@ -124,7 +124,7 @@ next couple of days/weeks:
 - [ ] More builtin functions (sin, cos, tan, etc)
 - [ ] Exponent
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-- [ ] Readline lib in the REPL for a better user experience
+- [x] Readline lib in the REPL for a better user experience
 - [ ] All units and prefix used in electronic
 
 ## What's next?
