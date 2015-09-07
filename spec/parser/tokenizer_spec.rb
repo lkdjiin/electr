@@ -182,4 +182,10 @@ describe Tokenizer do
     expect(tkr.next_token).to eq ")"
   end
 
+  specify "22_000_000 11,000" do
+    tkr = Tokenizer.new("22_000_000 11,000")
+    expect(tkr.next_token).to eq "22_000_000"
+    expect(tkr.next_token).to eq "11,000"
+  end
+
 end

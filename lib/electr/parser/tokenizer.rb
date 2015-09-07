@@ -94,7 +94,7 @@ module Electr
 
     def get_number
       add_look_ahead if @look_ahead == '-'
-      add_look_ahead while @look_ahead =~ /[0-9.]/
+      add_look_ahead while @look_ahead =~ /[0-9._,]/
       if @token[-1] != '.'
         add_look_ahead while @look_ahead =~ /[kKRuFpΩμAmWV]/
       end

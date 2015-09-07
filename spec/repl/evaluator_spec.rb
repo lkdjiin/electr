@@ -44,12 +44,12 @@ describe Evaluator do
   end
 
   specify do
-    pns = Compiler.compile_to_pn("-(2 3)")
+    pns = Compiler.compile_to_pn("11,000 + 22_000")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq -6
+    expect(result).to eq 33_000
   end
 
 
