@@ -13,7 +13,7 @@ module Electr
       @value = nil
     end
 
-    attr_reader :value, :name
+    attr_reader :value, :name, :children
 
     # Public: Add a child node to the end of the children's list.
     #

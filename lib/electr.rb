@@ -16,6 +16,7 @@ module Electr
   # f - function
   SYMBOL_TABLE = {
     'sqrt' => 'f',
+    'sin' => 'f',
   }
 
   PRECEDENCE = {

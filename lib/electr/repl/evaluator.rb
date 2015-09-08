@@ -34,6 +34,9 @@ module Electr
       when "sqrt"
         a = @stack.pop
         @stack.push(Math::sqrt(a))
+      when "sin"
+        a = @stack.pop
+        @stack.push(Math::sin(a))
       end
     end
 
