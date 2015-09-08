@@ -40,6 +40,9 @@ module Electr
       when "cos"
         a = @stack.pop
         @stack.push(Math::cos(a))
+      when "tan"
+        a = @stack.pop
+        @stack.push(Math::tan(a))
       end
     end
 

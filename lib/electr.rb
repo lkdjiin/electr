@@ -18,6 +18,7 @@ module Electr
     'sqrt' => 'f',
     'sin' => 'f',
     'cos' => 'f',
+    'tan' => 'f',
   }
 
   PRECEDENCE = {
