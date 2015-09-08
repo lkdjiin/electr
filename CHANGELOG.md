@@ -15,6 +15,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   MIT to [Apache 2.0][apache2]
 [apache2]: http://www.apache.org/licenses/LICENSE-2.0
 
+### Fixed
+- Temporarily limits function's arity to one. This fixes some minor bugs in
+  the AST.
+
 
 ## [0.0.3] - 2015-09-07
 ### Added

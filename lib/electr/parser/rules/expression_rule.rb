@@ -72,8 +72,13 @@ module Electr
     end
 
     def there_is_room?(node)
-      (node.value == UNARY_MINUS_INTERNAL_SYMBOL && node.size < 1) ||
-      (node.value != UNARY_MINUS_INTERNAL_SYMBOL && node.size < 2)
+      case node.name
+      when 'funcargs'
+        node.size < 1
+      else
+        (node.value == UNARY_MINUS_INTERNAL_SYMBOL && node.size < 1) ||
+        (node.value != UNARY_MINUS_INTERNAL_SYMBOL && node.size < 2)
+      end
     end
 
   end
