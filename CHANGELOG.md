@@ -2,15 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
 ## [Unreleased] - unreleased
 ### Added
 - Using the [readline library][readline]
 - There's now a branch «development» on Github
 [readline]: https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+
 ### Modified
 - In order to use the readline library the license of Electr switch from
   MIT to [Apache 2.0][apache2]
 [apache2]: http://www.apache.org/licenses/LICENSE-2.0
+
 
 ## [0.0.3] - 2015-09-07
 ### Added
@@ -19,8 +22,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Electr supports negative numbers
 - Coco, a code coverage tool as a developer dependency
 - Enable Travis Continuous Integration tool
+
 ### Modified
 - One can write floating point number without a leading zero (ie `.678`).
+
 
 ## [0.0.2] - 2015-09-04
 ### Added
