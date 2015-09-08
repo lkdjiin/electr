@@ -1,4 +1,5 @@
 require "electr/repl/evaluator"
+require "electr/repl/eval_function"
 require "electr/repl/nil_evaluator"
 require "electr/repl/base_reader"
 require "electr/repl/reader"
