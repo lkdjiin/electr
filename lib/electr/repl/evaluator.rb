@@ -37,6 +37,9 @@ module Electr
       when "sin"
         a = @stack.pop
         @stack.push(Math::sin(a))
+      when "cos"
+        a = @stack.pop
+        @stack.push(Math::cos(a))
       end
     end
 

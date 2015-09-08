@@ -46,12 +46,12 @@ describe Evaluator do
   end
 
   specify do
-    pns = Compiler.compile_to_pn("sin(pi / 2) + 1")
+    pns = Compiler.compile_to_pn("cos(0) - 1")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq 2
+    expect(result).to eq 0
   end
 
 
