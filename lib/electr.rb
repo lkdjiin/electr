@@ -13,6 +13,8 @@ module Electr
 
   UNARY_MINUS_INTERNAL_SYMBOL = '€'
 
+  ONE_CHAR_OPERATORS = %w( + - / ^ )
+
   # f - function
   SYMBOL_TABLE = {
     'sqrt' => 'f',
@@ -22,9 +24,10 @@ module Electr
   }
 
   PRECEDENCE = {
-    '()' => {assoc: 'L', val: 99},
-    ')'  => {assoc: 'L', val: 99},
-    '('  => {assoc: 'L', val: 99},
+    '()' => {assoc: 'L', val: 100},
+    ')'  => {assoc: 'L', val: 100},
+    '('  => {assoc: 'L', val: 100},
+    '^'  => {assoc: 'L', val: 90},
     UNARY_MINUS_INTERNAL_SYMBOL => {assoc: 'R', val: 80},
     '*'  => {assoc: 'L', val: 10},
     '/'  => {assoc: 'L', val: 10},

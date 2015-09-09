@@ -188,4 +188,11 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "11,000"
   end
 
+  specify "10 ^ 2" do
+    tkr = Tokenizer.new("10 ^ 2")
+    expect(tkr.next_token).to eq "10"
+    expect(tkr.next_token).to eq "^"
+    expect(tkr.next_token).to eq "2"
+  end
+
 end

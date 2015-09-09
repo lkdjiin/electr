@@ -43,6 +43,7 @@ module Electr
     end
 
     def classic_operation(operand)
+      operand = "**" if operand == '^'
       a = @stack.pop
       b = @stack.pop
       @stack.push(a.send(operand, b))
