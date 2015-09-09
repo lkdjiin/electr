@@ -2,6 +2,8 @@
 
 Interactive language for electronic formulas.
 
+What's new? Take a look at [CHANGELOG.md](CHANGELOG.md).
+
 ## Rationale
 
 - I have not found an open source language or calculator at the command line,
@@ -119,7 +121,7 @@ next couple of days/weeks:
 - [x] Negative numbers
 - [x] Floating point number without a leading zero (ie `.678`)
 - [x] 10_000 or 10,000 will be the same as 10000
-- [x] More builtin functions (sin, cos, tan, etc)
+- [x] More builtin functions (sin, cos, tan)
 - [x] Exponent
 - [x] Readline lib in the REPL for a better user experience
 - [ ] `*` for the multiplication if one want to
