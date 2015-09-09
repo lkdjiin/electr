@@ -8,7 +8,7 @@ module Electr
       end
 
       def operator?
-        ['+', '-', '/', UNARY_MINUS_INTERNAL_SYMBOL].include?(self)
+        [*ONE_CHAR_OPERATORS, UNARY_MINUS_INTERNAL_SYMBOL].include?(self)
       end
 
       def constant?

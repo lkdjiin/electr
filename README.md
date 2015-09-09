@@ -119,12 +119,12 @@ next couple of days/weeks:
 - [x] Negative numbers
 - [x] Floating point number without a leading zero (ie `.678`)
 - [x] 10_000 or 10,000 will be the same as 10000
+- [x] More builtin functions (sin, cos, tan, etc)
+- [x] Exponent
+- [x] Readline lib in the REPL for a better user experience
 - [ ] `*` for the multiplication if one want to
 - [ ] √ for an alternative to square root
-- [ ] More builtin functions (sin, cos, tan, etc)
-- [ ] Exponent
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-- [x] Readline lib in the REPL for a better user experience
 - [ ] All units and prefix used in electronic
 
 ## What's next?

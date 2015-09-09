@@ -33,6 +33,7 @@ describe Evaluator do
     {code: "11,000 + 22_000", result: 33_000},
     {code: "sin(pi / 2) + 1", result: 2},
     {code: "cos(0) - 1", result: 0},
+    {code: "tan(0) - 1", result: -1},
   ]
 
   specify "#evaluate_pn" do
@@ -47,12 +48,12 @@ describe Evaluator do
   end
 
   specify do
-    pns = Compiler.compile_to_pn("tan(0) - 1")
+    pns = Compiler.compile_to_pn("10 ^ 2")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq -1
+    expect(result).to eq 100
   end
 
 

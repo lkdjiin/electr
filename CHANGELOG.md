@@ -5,7 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - unreleased
 ### Added
-- New functions: sin, cos and tan.
+- Exponent operator: ^
+- New functions: sin, cos and tan
 - Using the [readline library][readline]
 - There's now a branch «development» on Github
 [readline]: https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
