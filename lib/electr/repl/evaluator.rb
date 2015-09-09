@@ -14,7 +14,7 @@ module Electr
         when "constant" then @stack.push(constant(item.value))
         when "value" then do_value(item.value)
         when "operator" then operation(item.value)
-        when "funcname" then func(item.value)
+        when "funcname" then EvalFunction.eval(item.value, @stack)
         end
       end
 
@@ -26,14 +26,6 @@ module Electr
     def constant(value)
       case value
       when "pi" then Math::PI
-      end
-    end
-
-    def func(name)
-      case name
-      when "sqrt"
-        a = @stack.pop
-        @stack.push(Math::sqrt(a))
       end
     end
 
@@ -51,6 +43,7 @@ module Electr
     end
 
     def classic_operation(operand)
+      operand = "**" if operand == '^'
       a = @stack.pop
       b = @stack.pop
       @stack.push(a.send(operand, b))

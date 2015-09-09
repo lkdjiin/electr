@@ -4,13 +4,13 @@ module Electr
   # computation.
   class ASTReader < BaseReader
 
-    def initialize
-      super("E--ast> ")
+    def initialize(readline_lib = Readline)
+      super("E--ast> ", readline_lib)
     end
 
     def run
-      prompt
-      Compiler.compile_to_ast(STDIN.gets.chomp)
+      line = @readline.readline(@prompt, true)
+      Compiler.compile_to_ast(line)
     end
 
   end

@@ -12,8 +12,6 @@ module Electr
   # - `)`
   class Tokenizer
 
-    ONE_CHAR_SYMBOLS = %w( + - / )
-
     # Create a new Tokenizer for a specific code.
     #
     # string - The String code to tokenize.
@@ -59,7 +57,7 @@ module Electr
         get_number
       elsif unary_minus?
         get_unary_minus
-      elsif ONE_CHAR_SYMBOLS.include?(@look_ahead)
+      elsif ONE_CHAR_OPERATORS.include?(@look_ahead)
         add_this_char
       elsif @look_ahead == '('
         add_this_char
