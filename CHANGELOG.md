@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased] - unreleased
+
+## [0.0.4] - 2015-09-09
 ### Added
 - Exponent operator: ^
 - New functions: sin, cos and tan
