@@ -61,7 +61,7 @@ module Electr
     private
 
     def print_version
-      puts "Electr version #{VERSION}"
+      puts "Electr version #{VERSION} (codename «#{CODENAME}»)"
       exit
     end
 

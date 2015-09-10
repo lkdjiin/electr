@@ -3,7 +3,7 @@ module Electr
   # The Read Eval Print Loop starting point.
   class Repl
 
-    BANNER = "\nElectr version #{Electr::VERSION}\n" +
+    BANNER = "\nElectr version #{VERSION} (codename «#{CODENAME}»)\n" +
              "A tiny language for electronic formulas\n\n" +
              "Hit Ctrl+C to quit Electr\n\n"
 
