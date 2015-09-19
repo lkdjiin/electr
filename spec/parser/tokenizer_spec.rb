@@ -195,4 +195,21 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "2"
   end
 
+  it 'tokenize units and prefixes' do
+    units = %w( A Hz W C V F R Ω S ℧ H )
+    prefixes = %w( k M G T m μ u n p )
+
+    units.each do |unit|
+      tkr = Tokenizer.new("1#{unit}")
+      expect(tkr.next_token).to eq "1" + unit
+    end
+
+    prefixes.each do |prefix|
+      units.each do |unit|
+        tkr = Tokenizer.new("1#{prefix}#{unit}")
+        expect(tkr.next_token).to eq "1" + prefix + unit
+      end
+    end
+  end
+
 end
