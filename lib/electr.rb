@@ -35,4 +35,14 @@ module Electr
     '+'  => {assoc: 'L', val:  1},
   }
 
+  UNITS = %w( A Hz W C V F R Ω S ℧ H )
+
+  PREFIXES = %w( k M G T m μ u n p )
+
+  # u μ - micro farad
+  # n   - nano farad
+  # p   - pico farad
+  # k K - kilo ohm
+  ABBREVIATIONS = %w( u μ n p k K )
+
 end
