@@ -17,7 +17,7 @@ module Electr
 
       def value?
         # The unit part is redondant with Tokenizer.
-        self =~ /[0-9.][kKRuFpΩμAmWV]{1,}\Z/
+        self =~ /[0-9.][A-Za-zΩ℧μ]{1,}\Z/
       end
 
     end

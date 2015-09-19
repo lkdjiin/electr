@@ -94,7 +94,7 @@ module Electr
       add_look_ahead if @look_ahead == '-'
       add_look_ahead while @look_ahead =~ /[0-9._,]/
       if @token[-1] != '.'
-        add_look_ahead while @look_ahead =~ /[kKRuFpΩμAmWV]/
+        add_look_ahead while @look_ahead =~ /[A-Za-zΩ℧μ]/
       end
       @token
     end

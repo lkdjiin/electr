@@ -19,7 +19,7 @@ module Electr
     def self.numeric(value)     ; new(:numeric, value)          ; end
     def self.operator(value)    ; new(:operator, value)         ; end
     def self.constant(value)    ; new(:constant, value)         ; end
-    def self.value(value)       ; new(:value, value)            ; end
+    def self.value(value)       ; new(:value, Value.assert(value)) ; end
     def self.name(value)        ; new(:name, value)             ; end
     def self.fname(value)       ; new(:fname, value)            ; end
     def self.fcall(value)       ; new(:fcall, value)            ; end
