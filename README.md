@@ -146,7 +146,7 @@ next couple of days/weeks:
 - [x] Exponent
 - [x] Readline lib in the REPL for a better user experience
 - [x] All units and prefix used in electronic
-- [ ] `*` for the multiplication if one want to
+- [x] `*` for the multiplication if one want to
 - [x] √ for an alternative to square root
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
 

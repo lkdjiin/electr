@@ -13,7 +13,7 @@ module Electr
 
   UNARY_MINUS_INTERNAL_SYMBOL = '€'
 
-  ONE_CHAR_OPERATORS = %w( + - / ^ )
+  ONE_CHAR_OPERATORS = %w( + - * / ^ )
 
   # f - function
   SYMBOL_TABLE = {
