@@ -35,6 +35,7 @@ describe Evaluator do
     {code: "cos(0) - 1", result: 0},
     {code: "tan(0) - 1", result: -1},
     {code: "10 ^ 2", result: 100},
+    {code: "√(49)", result: 7},
   ]
 
   specify "#evaluate_pn" do
@@ -49,12 +50,12 @@ describe Evaluator do
   end
 
   specify do
-    pns = Compiler.compile_to_pn("√(49)")
+    pns = Compiler.compile_to_pn("2 * 3")
     
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq 7
+    expect(result).to eq 6
   end
 
 
