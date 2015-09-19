@@ -18,6 +18,7 @@ module Electr
   # f - function
   SYMBOL_TABLE = {
     'sqrt' => 'f',
+    '√' => 'f',
     'sin' => 'f',
     'cos' => 'f',
     'tan' => 'f',

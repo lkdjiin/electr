@@ -4,7 +4,7 @@ module Electr
 
     def self.eval(function_name, stack)
       case function_name
-      when "sqrt"
+      when "sqrt", "√"
         a = stack.pop
         stack.push(Math::sqrt(a))
       when "sin"

@@ -100,7 +100,7 @@ module Electr
     end
 
     def get_word
-      add_look_ahead while @look_ahead =~ /\w/
+      add_look_ahead while @look_ahead =~ /[\w√]/
       @token
     end
 

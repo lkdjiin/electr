@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased] - unreleased
 ### Added
 - All units and prefix used in electronic (sort of)
+- √ as an alias of sqrt
 - The version now has a codename. The current one is «Units»
 
 ## [0.0.4] - 2015-09-09

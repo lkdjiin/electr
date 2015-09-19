@@ -125,6 +125,11 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "sqrt"
   end
 
+  specify "√(49)" do
+    tkr = Tokenizer.new("√(49)")
+    expect(tkr.next_token).to eq "√"
+  end
+
   specify "11K 22k 33kΩ" do
     tkr = Tokenizer.new("11K 22k 33kΩ")
     expect(tkr.next_token).to eq "11K"
