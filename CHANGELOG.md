@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - √ as an alias of sqrt
 - The version now has a codename. The current one is «Units»
 
+### Fixed
+- A bug where some illegal tokens produced an infinite loop
+
 ## [0.0.4] - 2015-09-09
 ### Added
 - Exponent operator: ^

@@ -101,6 +101,9 @@ module Electr
 
     def get_word
       add_look_ahead while @look_ahead =~ /[\w√]/
+      # At this step, an empty token signify that we have reached an
+      # illegal word.
+      raise(SyntaxError, @codeline) if @token.empty?
       @token
     end
 

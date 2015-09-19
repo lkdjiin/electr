@@ -217,4 +217,11 @@ describe Tokenizer do
     end
   end
 
+  it 'raises on illegal token' do
+    tkr = Tokenizer.new("@")
+    expect {
+      tkr.next_token
+    }.to raise_error(Electr::SyntaxError)
+  end
+
 end
