@@ -95,22 +95,43 @@ is in Hertz.
     E> 1 / (2 pi 0.5uF sqrt(11k 22k))
     20.4617344581
 
-### Units
+### Units, Prefixes and Abbreviations
 
-Currently Electr knows the following units:
+Electr knows the following units:
 
-Prefix and/or Symbol  | Name
-:-------------------: | -----
-k K kΩ                | kilo ohm
-Ω R                   | ohm
-A                     | ampere
-V                     | volt
-W                     | watt
-mA                    | milli ampere
-mV                    | milli volt
-mW                    | milli watt
-μ u μF uF             | micro farad
-p pF                  | pico farad
+Symbol  | Name
+:-----: | -----
+A       | ampere
+Ω R     | ohm
+V       | volt
+W       | watt
+F       | farad
+Hz      | hertz
+C       | coulomb
+S ℧     | siemens
+H       | henry
+
+Units can be combined with the following prefixes:
+
+Symbol  | Name
+:-----: | -----
+k       | kilo
+M       | mega
+G       | giga
+T       | tera
+m       | milli
+μ u     | micro
+n       | nano
+p       | pico
+
+There is also the following abbreviations:
+
+Symbol  | Name
+:-----: | -----
+u μ     | micro farad
+n       | nano farad
+p       | pico farad
+k K     | kilo ohm
 
 ### What is missing?
 
@@ -124,10 +145,10 @@ next couple of days/weeks:
 - [x] More builtin functions (sin, cos, tan)
 - [x] Exponent
 - [x] Readline lib in the REPL for a better user experience
-- [ ] `*` for the multiplication if one want to
-- [ ] √ for an alternative to square root
+- [x] All units and prefix used in electronic
+- [x] `*` for the multiplication if one want to
+- [x] √ for an alternative to square root
 - [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-- [ ] All units and prefix used in electronic
 
 ## What's next?
 

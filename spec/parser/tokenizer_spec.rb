@@ -52,6 +52,13 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "300"
   end
 
+  specify "2 * 3" do
+    tkr = Tokenizer.new("2 * 3")
+    expect(tkr.next_token).to eq "2"
+    expect(tkr.next_token).to eq "*"
+    expect(tkr.next_token).to eq "3"
+  end
+
   specify "2 0.6" do
     tkr = Tokenizer.new("2 0.6")
     expect(tkr.next_token).to eq "2"
@@ -125,6 +132,11 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "sqrt"
   end
 
+  specify "√(49)" do
+    tkr = Tokenizer.new("√(49)")
+    expect(tkr.next_token).to eq "√"
+  end
+
   specify "11K 22k 33kΩ" do
     tkr = Tokenizer.new("11K 22k 33kΩ")
     expect(tkr.next_token).to eq "11K"
@@ -193,6 +205,30 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "10"
     expect(tkr.next_token).to eq "^"
     expect(tkr.next_token).to eq "2"
+  end
+
+  it 'tokenize units and prefixes' do
+    units = %w( A Hz W C V F R Ω S ℧ H )
+    prefixes = %w( k M G T m μ u n p )
+
+    units.each do |unit|
+      tkr = Tokenizer.new("1#{unit}")
+      expect(tkr.next_token).to eq "1" + unit
+    end
+
+    prefixes.each do |prefix|
+      units.each do |unit|
+        tkr = Tokenizer.new("1#{prefix}#{unit}")
+        expect(tkr.next_token).to eq "1" + prefix + unit
+      end
+    end
+  end
+
+  it 'raises on illegal token' do
+    tkr = Tokenizer.new("@")
+    expect {
+      tkr.next_token
+    }.to raise_error(Electr::SyntaxError)
   end
 
 end
