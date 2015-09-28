@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased] - unreleased
+
+## [0.0.5] - 2015-09-28
 ### Added
 - All units and prefix used in electronic (sort of)
 - One can use * for a multiplication as well as no symbol
