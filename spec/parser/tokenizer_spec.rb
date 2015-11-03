@@ -207,6 +207,11 @@ describe Tokenizer do
     expect(tkr.next_token).to eq "2"
   end
 
+  specify "R1" do
+    tkr = Tokenizer.new("R1")
+    expect(tkr.next_token).to eq "R1"
+  end
+
   specify "R1 = 100" do
     tkr = Tokenizer.new("R1 = 100")
 

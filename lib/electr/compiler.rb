@@ -13,7 +13,6 @@ module Electr
       while tokenizer.has_more_token?
         units << Lexer.lexify(tokenizer.next_token)
       end
-
       syntaxer = Syntaxer.new(units.dup)
       syntaxer.run
     end

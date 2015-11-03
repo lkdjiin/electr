@@ -65,10 +65,80 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R1 = 100")
       evaluator.evaluate_pn(pns)
-
       expect(evaluator.environment["R1"]).to eq 100.0
     end
 
+    it "starts empty" do
+      evaluator = Evaluator.new
+      expect(evaluator.environment.size).to eq 0
+    end
+
+    it "assigns an expression" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R2 = 10 + 7")
+      evaluator.evaluate_pn(pns)
+      expect(evaluator.environment["R2"]).to eq 17.0
+    end
+
+    it "assigns a variable's value" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("R2 = R1")
+      evaluator.evaluate_pn(pns)
+      expect(evaluator.environment["R2"]).to eq 100.0
+    end
+
+    it "gets the value" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("R1")
+      result = evaluator.evaluate_pn(pns)
+      expect(result).to eq 100.0
+
+    end
+
+    it "can add two variables" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("R2 = 200")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("R1 + R2")
+      result = evaluator.evaluate_pn(pns)
+      expect(result).to eq 300.0
+    end
+
+    it "can add a variable and a numeric" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("R1 + 50")
+      result = evaluator.evaluate_pn(pns)
+      expect(result).to eq 150.0
+    end
+
+    it "can add a numeric and a variable" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      pns = Compiler.compile_to_pn("50 + R1")
+      result = evaluator.evaluate_pn(pns)
+      expect(result).to eq 150.0
+    end
   end
 
 end

@@ -41,7 +41,9 @@ module Electr
 
     def number?
       first = @series.first
-      first.numeric? || first.constant? || first.value? || first.fname?
+      # Is it make sense to say all this things are «numbers»?
+      first.numeric? || first.constant? || first.value? || first.fname? ||
+        first.variable?
     end
 
     def first_unit_fname?
