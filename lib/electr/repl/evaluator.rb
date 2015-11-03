@@ -19,6 +19,7 @@ module Electr
       while item = list.pop
         case item.name
         when "numeric" then @stack.push(item.to_f)
+        when "variable" then @stack.push(item.value)
         when "constant" then @stack.push(constant(item.value))
         when "value" then do_value(item.value)
         when "operator" then operation(item.value)
@@ -38,11 +39,18 @@ module Electr
     end
 
     def operation(operand)
-      if operand == UNARY_MINUS_INTERNAL_SYMBOL
-        unary_minus
+      case operand
+      when UNARY_MINUS_INTERNAL_SYMBOL then unary_minus
+      when "=" then assign
       else
         classic_operation(operand)
       end
+    end
+
+    def assign
+      variable = @stack.pop
+      value = @stack.pop
+      @environment[variable] = value
     end
 
     def unary_minus

@@ -58,4 +58,17 @@ describe Evaluator do
     expect(result).to eq 6
   end
 
+  describe "environment" do
+
+    it "retains variable" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      evaluator.evaluate_pn(pns)
+
+      expect(evaluator.environment["R1"]).to eq 100.0
+    end
+
+  end
+
 end
