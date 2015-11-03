@@ -23,6 +23,7 @@ module Electr
     def self.name(value)        ; new(:name, value)             ; end
     def self.fname(value)       ; new(:fname, value)            ; end
     def self.fcall(value)       ; new(:fcall, value)            ; end
+    def self.variable(value)    ; new(:variable, value)         ; end
     def self.open_parenthesis   ; new(:open_parenthesis, "(")   ; end
     def self.closed_parenthesis ; new(:closed_parenthesis, ")") ; end
 
@@ -66,5 +67,8 @@ module Electr
       @type == :open_parenthesis
     end
 
+    def variable?
+      @type == :variable
+    end
   end
 end

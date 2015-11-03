@@ -16,6 +16,7 @@ module Electr
       when ->(x) { x.operator? } then LexicalUnit.operator(token)
       when ->(x) { x.constant? } then LexicalUnit.constant(token)
       when ->(x) { x.value? } then LexicalUnit.value(token)
+      when ->(x) { x.variable? } then LexicalUnit.variable(token)
       when ->(x) { x == '(' } then LexicalUnit.open_parenthesis
       when ->(x) { x == ')' } then LexicalUnit.closed_parenthesis
       when ->(x) { SYMBOL_TABLE[x] == 'f' } then LexicalUnit.fname(token)

@@ -22,7 +22,7 @@ module Electr
     # Returns Array of LexicalUnit ordered with prefix notation.
     def run
       while unit = @units.pop
-        if unit.number?
+        if unit.number? || unit.variable?
           @output.push(unit)
         elsif unit.fname?
           @operator.push(unit)

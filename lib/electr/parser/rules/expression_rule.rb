@@ -46,12 +46,16 @@ module Electr
 
     def dig_series(node)
       while unit = @series.shift
+
         if unit && unit.numeric? && there_is_room?(node)
           node.add_child(NumericAST.new(unit.value))
+
         elsif unit && unit.constant? && there_is_room?(node)
           node.add_child(ConstantAST.new(unit.value))
+
         elsif unit && unit.value? && there_is_room?(node)
           node.add_child(ValueAST.new(unit.value))
+
         elsif unit && unit.fname? && there_is_room?(node)
           func      = FuncAST.new
           func_name = FuncNameAST.new(unit.value)
@@ -60,10 +64,15 @@ module Electr
           func.add_child(func_name)
           func.add_child(func_args)
           node.add_child(func)
+
         elsif unit && unit.operator?
           new_node = OperatorAST.new(unit.value)
           dig_series(new_node)
           node.add_child(new_node)
+
+        elsif unit && unit.variable?
+          node.add_child(VariableAST.new(unit.value))
+
         else
           @series.unshift(unit)
           break

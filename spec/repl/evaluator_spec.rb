@@ -51,13 +51,11 @@ describe Evaluator do
 
   specify do
     pns = Compiler.compile_to_pn("2 * 3")
-    
+
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
     expect(result).to eq 6
   end
-
-
 
 end
