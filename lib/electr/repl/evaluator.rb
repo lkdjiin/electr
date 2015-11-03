@@ -5,7 +5,15 @@ module Electr
 
     def initialize
       @stack = []
+      @environment = {}
     end
+
+    # The environment is where we record the variable's names and
+    # values.
+    #
+    # Useful for testing purposes, for now there is no other needs to
+    # expose this variable.
+    attr_reader :environment
 
     def evaluate_pn(list)
       while item = list.pop

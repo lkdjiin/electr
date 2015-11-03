@@ -4,6 +4,7 @@ module Electr
     refine String do
 
       def numeric?
+        # I know it isn't the best regexp I can do…
         self =~ /\A-?[0-9\.,_]+\z/
       end
 
