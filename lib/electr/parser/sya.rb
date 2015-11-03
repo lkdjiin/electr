@@ -39,7 +39,7 @@ module Electr
           end
           # If the stack runs out without finding a right parenthesis,
           # then there are mismatched parentheses.
-        elsif unit.operator?
+        elsif unit.operator? || unit.assign?
           while @operator.size > 0 &&
                 (@operator.last.operator? || @operator.last.fname?) &&
                 (precedence(unit) < precedence(@operator.last))

@@ -22,6 +22,7 @@ describe Lexer do
     [ :fname, "sqrt" ],
     [ :open_parenthesis, "(" ],
     [ :closed_parenthesis, ")" ],
+    [ :assign, "=" ],
     [ :variable, "R1" ],
   ]
 

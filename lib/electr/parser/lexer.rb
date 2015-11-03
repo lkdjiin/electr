@@ -19,6 +19,7 @@ module Electr
       when ->(x) { x.variable? } then LexicalUnit.variable(token)
       when ->(x) { x == '(' } then LexicalUnit.open_parenthesis
       when ->(x) { x == ')' } then LexicalUnit.closed_parenthesis
+      when ->(x) { x == '=' } then LexicalUnit.assign
       when ->(x) { SYMBOL_TABLE[x] == 'f' } then LexicalUnit.fname(token)
       else LexicalUnit.name(token)
       end

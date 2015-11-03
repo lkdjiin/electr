@@ -27,6 +27,10 @@ module Electr
         dig_series(@ast_node)
       else
         unit = @series.shift
+        # If we want to handle = differently than other operators, we
+        # can do something like the following:
+        # node_class = unit.assign? ? AssignAST : OperatorAST
+        # node = node_class.new(unit.value)
         node = OperatorAST.new(unit.value)
         dig_series(node) while @series.size > 0
         @ast_node.add_child(node)

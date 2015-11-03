@@ -26,6 +26,7 @@ module Electr
     def self.variable(value)    ; new(:variable, value)         ; end
     def self.open_parenthesis   ; new(:open_parenthesis, "(")   ; end
     def self.closed_parenthesis ; new(:closed_parenthesis, ")") ; end
+    def self.assign             ; new(:assign, "=")             ; end
 
     def ==(other)
       @type == other.type && @value == other.value
@@ -65,6 +66,10 @@ module Electr
 
     def open_parenthesis?
       @type == :open_parenthesis
+    end
+
+    def assign?
+      @type == :assign
     end
 
     def variable?
