@@ -25,15 +25,16 @@ module Electr
   }
 
   PRECEDENCE = {
-    '()' => {assoc: 'L', val: 100},
-    ')'  => {assoc: 'L', val: 100},
-    '('  => {assoc: 'L', val: 100},
-    '^'  => {assoc: 'L', val: 90},
-    UNARY_MINUS_INTERNAL_SYMBOL => {assoc: 'R', val: 80},
-    '*'  => {assoc: 'L', val: 10},
-    '/'  => {assoc: 'L', val: 10},
-    '-'  => {assoc: 'L', val:  1},
-    '+'  => {assoc: 'L', val:  1},
+    '()' => {assoc: 'L', val: 1000},
+    ')'  => {assoc: 'L', val: 1000},
+    '('  => {assoc: 'L', val: 1000},
+    '^'  => {assoc: 'L', val: 900},
+    UNARY_MINUS_INTERNAL_SYMBOL => {assoc: 'R', val: 800},
+    '*'  => {assoc: 'L', val: 100},
+    '/'  => {assoc: 'L', val: 100},
+    '-'  => {assoc: 'L', val:  90},
+    '+'  => {assoc: 'L', val:  90},
+    '='  => {assoc: 'R', val:  10},
   }
 
   UNITS = %w( A Hz W C V F R Ω S ℧ H )

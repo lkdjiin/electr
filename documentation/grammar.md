@@ -1,5 +1,7 @@
 # Grammar of Electr in EBNF
 
+(* Sadly it's not at all up to date… *)
+
     expression = [`(`], number {[op] expression}, [`)`];
 
     number     = numeric | value | constant | f-call;
@@ -21,7 +23,7 @@
     f-name     = ? regexp: [a-z]{1,} ?;
 
     (* operators *)
-    op         = `-` | `+` |  `/`;
+    op         = `-` | `+` |  `/` | `*`;
 
 ## Precisions
 

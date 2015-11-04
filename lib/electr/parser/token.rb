@@ -4,7 +4,8 @@ module Electr
     refine String do
 
       def numeric?
-        self =~ /[0-9.]\Z/
+        # I know it isn't the best regexp I can do…
+        self =~ /\A-?[0-9\.,_]+\z/
       end
 
       def operator?
@@ -17,7 +18,11 @@ module Electr
 
       def value?
         # The unit part is redondant with Tokenizer.
-        self =~ /[0-9.][A-Za-zΩ℧μ]{1,}\Z/
+        self =~ /[0-9.][A-Za-zΩ℧μ]{1,}\z/
+      end
+
+      def variable?
+        self =~ /\A[A-Z][0-9]+\z/
       end
 
     end

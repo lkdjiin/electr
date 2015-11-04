@@ -22,7 +22,7 @@ module Electr
     # Returns Array of LexicalUnit ordered with prefix notation.
     def run
       while unit = @units.pop
-        if unit.number?
+        if unit.number? || unit.variable?
           @output.push(unit)
         elsif unit.fname?
           @operator.push(unit)
@@ -39,7 +39,7 @@ module Electr
           end
           # If the stack runs out without finding a right parenthesis,
           # then there are mismatched parentheses.
-        elsif unit.operator?
+        elsif unit.operator? || unit.assign?
           while @operator.size > 0 &&
                 (@operator.last.operator? || @operator.last.fname?) &&
                 (precedence(unit) < precedence(@operator.last))
@@ -90,12 +90,12 @@ module Electr
     end
 
     def maybe_insertion_needed?(unit)
-      unit_ahead && unit.number?
+      unit_ahead && (unit.number? || unit.variable?)
     end
 
     def insertion_needed?
       unit_ahead.number? || unit_ahead.open_parenthesis? ||
-      unit_ahead.fname? || unit_ahead.unary_minus?
+      unit_ahead.fname? || unit_ahead.unary_minus? || unit_ahead.variable?
     end
 
     def unit_ahead

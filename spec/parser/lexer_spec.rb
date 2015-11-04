@@ -8,6 +8,9 @@ describe Lexer do
     [ :numeric, "123" ],
     [ :numeric, "0.6" ],
     [ :numeric, ".6" ],
+    [ :numeric, "-.6" ],
+    [ :numeric, "-0.6" ],
+    [ :numeric, "-123" ],
     [ :operator, "+" ],
     [ :operator, "-" ],
     [ :operator, "/" ],
@@ -19,6 +22,8 @@ describe Lexer do
     [ :fname, "sqrt" ],
     [ :open_parenthesis, "(" ],
     [ :closed_parenthesis, ")" ],
+    [ :assign, "=" ],
+    [ :variable, "R1" ],
   ]
 
   it "lexify" do

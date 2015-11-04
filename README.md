@@ -95,6 +95,20 @@ is in Hertz.
     E> 1 / (2 pi 0.5uF sqrt(11k 22k))
     20.4617344581
 
+### Variables
+
+A variable name must be an uppercase letter followed by a digit or more:
+
+    R1 = 22k
+
+The same formula as above can be written using variables:
+
+    E> C1 = 0.5uF
+    E> R1 = 11k
+    E> R2 = 22k
+    E> 1 / (2 pi C1 sqrt(R1 R2))
+    20.4617344581
+
 ### Units, Prefixes and Abbreviations
 
 Electr knows the following units:
@@ -179,14 +193,6 @@ ask us for the components values, then gives us the result.
     R1=?> 33K
     C1=?> 1000pF
     C2=?> 470pF
-    7.04kHz
-
-Or acts like a tiny programming language.
-
-    E> R1 = 33k
-    E> C1 = 1000pF
-    E> C2 = 470pF
-    E> 1 / (2 pi R1 sq(C1 C2))
     7.04kHz
 
 Why not having custom functions?
