@@ -16,7 +16,7 @@ module Electr
     attr_reader :environment
 
     # Do the evaluation.This method must return something meaningful for
-    # the Printer object.
+    # the Printer object. So returning nil isn't an option here.
     #
     # list - A list of Pn item (Prefix notation).
     #
@@ -37,16 +37,20 @@ module Electr
         end
       end
 
-      # Evaluation should always evaluate to «something». So returning nil
-      # shouldn't be an option here. So `ensure_number` seems to be
-      # misnamed, as it can return nil amongst many other things ;)
-      # It's certainly worth it to add a check to ensure that the stack
-      # isn't empty and raise an error in such case.
-      ElectrValue.new(ensure_number(@stack.pop))
+      result = @stack.pop
+      if result.respond_to?(:hidden?)
+        result
+      else
+        ElectrValue.number(ensure_number(result))
+      end
 
     rescue UnboundVariableError => e
       @stack.clear
       ElectrValue.error("Error: unbound variable #{e.message}")
+
+    rescue NilEvaluationError
+      @stack.clear
+      ElectrValue.error("Error: nil evaluation")
 
     end
 
@@ -58,6 +62,7 @@ module Electr
     #
     # Returns a Numeric number.
     def ensure_number(wannabe_number)
+      wannabe_number or raise(NilEvaluationError)
       if wannabe_number.is_a?(String)
         get_value_from_variable(wannabe_number)
       else
@@ -96,8 +101,8 @@ module Electr
     def assign
       variable = @stack.pop
       value = ensure_number(@stack.pop)
-      @environment[variable] = ElectrValue.new(value)
-      @stack.push(value)
+      @environment[variable] = ElectrValue.number(value)
+      @stack.push(ElectrValue.hidden(value))
     end
 
     def unary_minus

@@ -7,4 +7,7 @@ module Electr
   class UnboundVariableError < StandardError
   end
 
+  class NilEvaluationError < StandardError
+  end
+
 end
