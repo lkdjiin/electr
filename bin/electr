@@ -16,11 +16,7 @@ if opt[:expression]
     temp = Electr::Compiler.compile_to_pn(opt[:expression])
     evaluator = Electr::Evaluator.new
     temp = evaluator.evaluate_pn(temp)
-    if temp == temp.truncate
-      puts temp.truncate
-    else
-      puts temp.round(10)
-    end
+    Electr::Printer.run(temp)
   end
 else
   if opt[:ast]
