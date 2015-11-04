@@ -4,36 +4,42 @@ include Electr
 
 describe ElectrValue do
 
-  it "holds a number" do
-    result = ElectrValue.new(10)
-    expect(result.number).to eq 10
+  describe "number" do
+
+    it "holds a number" do
+      result = ElectrValue.new(10)
+      expect(result.number).to eq 10
+    end
+
+    it "has type number" do
+      result = ElectrValue.new(10)
+      expect(result.type).to eq :number
+    end
+
+    it "knows it is a number" do
+      result = ElectrValue.new(10)
+      expect(result.number?).to eq true
+      expect(result.error?).to eq false
+    end
   end
 
-  it "has type number" do
-    result = ElectrValue.new(10)
-    expect(result.type).to eq :number
-  end
+  describe "error" do
 
-  it "knows it is a number" do
-    result = ElectrValue.new(10)
-    expect(result.number?).to eq true
-    expect(result.error?).to eq false
-  end
+    it "holds an error message" do
+      result = ElectrValue.error("message")
+      expect(result.error).to eq "message"
+    end
 
-  it "holds an error message" do
-    result = ElectrValue.error("message")
-    expect(result.error).to eq "message"
-  end
+    it "has type error" do
+      result = ElectrValue.error("message")
+      expect(result.type).to eq :error
+    end
 
-  it "has type error" do
-    result = ElectrValue.error("message")
-    expect(result.type).to eq :error
-  end
-
-  it "knows it is a error" do
-    result = ElectrValue.error("message")
-    expect(result.error?).to eq true
-    expect(result.number?).to eq false
+    it "knows it is a error" do
+      result = ElectrValue.error("message")
+      expect(result.error?).to eq true
+      expect(result.number?).to eq false
+    end
   end
 
   describe "==" do
