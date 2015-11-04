@@ -15,6 +15,10 @@ module Electr
     # expose this variable.
     attr_reader :environment
 
+    # This method must return something meaningful for the Printer
+    # object.
+    #
+    # See also Printer.
     def evaluate_pn(list)
 
       while item = list.pop
@@ -29,6 +33,11 @@ module Electr
         end
       end
 
+      # Evaluation should always evaluate to «something». So returning nil
+      # shouldn't be an option here. So `ensure_number` seems to be
+      # misnamed, as it can return nil amongst many other things ;)
+      # It's certainly worth it to add a check to ensure that the stack
+      # isn't empty and raise an error in such case.
       ensure_number(@stack.pop)
 
     rescue UnboundVariableError => e
@@ -71,6 +80,7 @@ module Electr
       variable = @stack.pop
       value = ensure_number(@stack.pop)
       @environment[variable] = value
+      @stack.push(value)
     end
 
     def unary_minus

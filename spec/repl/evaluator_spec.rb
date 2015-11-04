@@ -69,6 +69,15 @@ describe Evaluator do
       }.not_to raise_error
     end
 
+    it "evalutes an assignment" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = 100")
+      result = evaluator.evaluate_pn(pns)
+
+      expect(result).to eq 100.0
+    end
+
     it "retains variable" do
       evaluator = Evaluator.new
 
