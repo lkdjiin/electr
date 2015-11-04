@@ -203,14 +203,6 @@ Why not having custom functions?
 
 *The above syntax is just one possibility amongst a lot of others.*
 
-## Contributing
-
-1. Fork it ( https://github.com/lkdjiin/electr/fork )
-2. **PLEASE Create your feature branch** (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
 ## Alternatives
 
 Some people point me to two existing softwares:
@@ -226,3 +218,47 @@ furlongs ;)
 ## License
 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Contributing
+
+### Good
+
+1. Fork it ( https://github.com/lkdjiin/electr/fork )
+2. **PLEASE Create your feature branch** (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+### Better
+
+Before anything else, please open an issue to say what you are intended to do.
+
+### What to do?
+
+You want to help but you don't know where to start? Here are some ideas.
+The list is more or less sorted. But feel free to pick any item you want.  If
+an item is marked as *pending* and you want to work on it, please first contact
+me.
+
+- [ ] Display a nice message on any error (not an abrupt fail as it is for now)
+- [ ] Add interactivity (see «Beyond the calculator» section in this readme)
+- [ ] Reply with a unit (*pending*)
+- [ ] Write 10mA as well as 10 mA
+- [ ] Underscore value. The `_` refers to the last computed value.
+- [ ] Add autocompletion with the readline library. For example see http://bogojoker.com/readline/
+- [ ] `foo()` should display an error message like "Error: Undefined function 'foo'"
+- [ ] BUG Unknown function `foo(2)` evaluate to 2. Instead it must report an error
+- [ ] A command to quit, instead of Ctrl-C. Should it be `quit`, `exit`, `quit()`, `exit()`?
+- [ ] Is there any benefits to have the @name attribute of an AST node as a symbol instead of a string?
+- [ ] Be sure that the AST can be unparsed (prove it, do it)
+- [ ] Simplify the sequences of multiplication in the AST
+- [ ] Quit gracefuly with Ctrl+d
+
+Here are some ideas to experiment:
+
+- exponent shortcuts `^^` for `^ 2`, `^^^` for `^ 3`, etc
+- Give multiplication an higher precedence than division: it can remove the need for parenthesis very often.
+- Compute Electr code from a source file
+- Give a try to travelling ruby (http://phusion.github.io/traveling-ruby/). It
+  could be very handy for people without knowledge of Ruby.
+- Colors in the console!
