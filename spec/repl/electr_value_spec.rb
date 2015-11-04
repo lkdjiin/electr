@@ -42,6 +42,25 @@ describe ElectrValue do
     end
   end
 
+  describe "hidden" do
+
+    it "holds a hidden number" do
+      result = ElectrValue.hidden(10)
+      expect(result.number).to eq 10
+    end
+
+    it "has type hidden" do
+      result = ElectrValue.hidden(10)
+      expect(result.type).to eq :hidden
+    end
+
+    it "knows it is a hidden number" do
+      result = ElectrValue.hidden(10)
+      expect(result.number?).to eq false
+      expect(result.hidden?).to eq true
+    end
+  end
+
   describe "==" do
     it "is equal when all same members" do
       a = ElectrValue.new(10, :number, "foo")

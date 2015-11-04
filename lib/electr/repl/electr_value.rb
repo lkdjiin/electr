@@ -7,13 +7,17 @@ module Electr
       new(0, :error, message)
     end
 
+    def self.hidden(number)
+      new(number, :hidden)
+    end
+
     def initialize(number, type = :number, message = "")
       @number = number
       @type = type
       @error = message
     end
 
-    attr_reader :number, :type, :error
+    attr_reader :number, :type, :error, :hidden
 
     def number?
       @type == :number
@@ -21,6 +25,10 @@ module Electr
 
     def error?
       @type == :error
+    end
+
+    def hidden?
+      @type == :hidden
     end
 
     def ==(other)
