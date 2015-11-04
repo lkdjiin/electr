@@ -244,6 +244,7 @@ me.
 - [ ] Add interactivity (see «Beyond the calculator» section in this readme)
 - [ ] Reply with a unit (*pending*)
 - [ ] Write 10mA as well as 10 mA
+- [ ] Use `;` to separate expressions (useful for command line option -e)
 - [ ] Underscore value. The `_` refers to the last computed value.
 - [ ] Add autocompletion with the readline library. For example see http://bogojoker.com/readline/
 - [ ] `foo()` should display an error message like "Error: Undefined function 'foo'"
