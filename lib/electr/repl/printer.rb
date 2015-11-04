@@ -1,6 +1,6 @@
 module Electr
 
-  # Prints the computation.
+  # It knows how to print the result of an evaluation.
   class Printer
 
     # result - The ElectrValue result of an evaluation.
@@ -15,9 +15,10 @@ module Electr
     def print
       if @result.number?
         print_number
-      else
+      elsif @result.error?
         print_error
       end
+      # If hidden, print nothing.
     end
 
     def print_number

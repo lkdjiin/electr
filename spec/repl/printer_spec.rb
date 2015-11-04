@@ -46,6 +46,14 @@ describe Printer do
       }.to output("foo\n").to_stdout
     end
 
+    it "doesn't display a hidden value" do
+      expect {
+
+        Printer.run(ElectrValue.hidden(10))
+
+      }.to_not output.to_stdout
+    end
+
   end
 
 end
