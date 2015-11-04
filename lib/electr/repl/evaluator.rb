@@ -30,6 +30,15 @@ module Electr
       end
 
       ensure_number(@stack.pop)
+
+    rescue UnboundVariableError => e
+      puts "Error: unbound variable #{e.message}"
+      @stack.clear
+      # Currently there is no type ElectrValue (or whatever) to return to
+      # the printer (see Printer). So I decided to return (and so to print)
+      # zero in case of error. This should not be the definitive behavior.
+      0
+
     end
 
     private
@@ -37,7 +46,7 @@ module Electr
     # In case we got the name of a variable, replace it by its value.
     def ensure_number(val_or_var)
       if val_or_var.is_a?(String)
-        @environment[val_or_var]
+        @environment[val_or_var] or raise UnboundVariableError, val_or_var
       else
         val_or_var
       end

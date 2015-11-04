@@ -60,6 +60,15 @@ describe Evaluator do
 
   describe "environment" do
 
+    it "don't raise on unbound variable" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1")
+      expect {
+        evaluator.evaluate_pn(pns)
+      }.not_to raise_error
+    end
+
     it "retains variable" do
       evaluator = Evaluator.new
 
