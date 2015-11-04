@@ -237,4 +237,16 @@ describe Sya do
     expect(sya.run).to eq [b, a, d, c, e]
   end
 
+  specify "R1 = R2 = 100" do
+    a = LexicalUnit.variable("R1")
+    b = LexicalUnit.assign
+    c = LexicalUnit.variable("R2")
+    d = LexicalUnit.assign
+    e = LexicalUnit.numeric("100")
+
+    sya = Sya.new([a, b, c, d, e])
+
+    expect(sya.run).to eq [b, a, d, c, e]
+  end
+
 end

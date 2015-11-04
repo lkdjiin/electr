@@ -33,16 +33,20 @@ module Electr
                 @operator.last.type != :closed_parenthesis
             @output.push(@operator.pop)
           end
-          rparen = @operator.pop
+          @operator.pop # Pop the right parenthesis.
           if @operator.last && @operator.last.type == :fname
             @output.push(@operator.pop)
           end
           # If the stack runs out without finding a right parenthesis,
           # then there are mismatched parentheses.
         elsif unit.operator? || unit.assign?
+
+          # Can you read that? I can't.
           while @operator.size > 0 &&
-                (@operator.last.operator? || @operator.last.fname?) &&
-                (precedence(unit) < precedence(@operator.last))
+                ((@operator.last.operator? || @operator.last.fname? || @operator.last.assign?) &&
+                (left_associative(unit) && (precedence(unit) < precedence(@operator.last))) ||
+                (right_associative(unit) && (precedence(unit) <= precedence(@operator.last))))
+
             @output.push(@operator.pop)
           end
           @operator.push(unit)
@@ -66,6 +70,22 @@ module Electr
         PRECEDENCE['()'][:val]
       else
         PRECEDENCE[operator.value][:val]
+      end
+    end
+
+    def left_associative(operator)
+      if operator.fname?
+        PRECEDENCE['()'][:assoc] == 'L'
+      else
+        PRECEDENCE[operator.value][:assoc] == 'L'
+      end
+    end
+
+    def right_associative(operator)
+      if operator.fname?
+        PRECEDENCE['()'][:assoc] == 'R'
+      else
+        PRECEDENCE[operator.value][:assoc] == 'R'
       end
     end
 
