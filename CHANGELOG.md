@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   `R1 R2` and so forth. The name of a variable must be an uppercase letter
   followed by 1 (or more) digit.
 
+### Modified
+- Reworded the help screen
+
 
 ## [0.0.5] - 2015-09-28
 ### Added
