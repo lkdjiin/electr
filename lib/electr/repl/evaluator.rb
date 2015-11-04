@@ -96,8 +96,8 @@ module Electr
     def assign
       variable = @stack.pop
       value = ensure_number(@stack.pop)
-      @environment[variable] = ElectrValue.new(value)
-      @stack.push(value)
+      @environment[variable] = ElectrValue.number(value)
+      @stack.push(ElectrValue.hidden(value))
     end
 
     def unary_minus

@@ -45,7 +45,7 @@ describe Evaluator do
       evaluator = Evaluator.new
       result = evaluator.evaluate_pn(pns)
 
-      expect(result).to eq ElectrValue.new(code[:result])
+      expect(result).to eq ElectrValue.number(code[:result])
     end
   end
 
@@ -55,7 +55,7 @@ describe Evaluator do
     evaluator = Evaluator.new
     result = evaluator.evaluate_pn(pns)
 
-    expect(result).to eq ElectrValue.new(6.0)
+    expect(result).to eq ElectrValue.number(6.0)
   end
 
   describe "environment" do
@@ -75,7 +75,7 @@ describe Evaluator do
       pns = Compiler.compile_to_pn("R1 = 100")
       result = evaluator.evaluate_pn(pns)
 
-      expect(result).to eq ElectrValue.new(100.0)
+      expect(result).to eq ElectrValue.hidden(100.0)
     end
 
     it "retains variable" do
@@ -83,7 +83,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R1 = 100")
       evaluator.evaluate_pn(pns)
-      expect(evaluator.environment["R1"]).to eq ElectrValue.new(100.0)
+      expect(evaluator.environment["R1"]).to eq ElectrValue.number(100.0)
     end
 
     it "starts empty" do
@@ -96,7 +96,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R2 = 10 + 7")
       evaluator.evaluate_pn(pns)
-      expect(evaluator.environment["R2"]).to eq ElectrValue.new(17.0)
+      expect(evaluator.environment["R2"]).to eq ElectrValue.number(17.0)
     end
 
     it "assigns a variable's value" do
@@ -107,7 +107,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R2 = R1")
       evaluator.evaluate_pn(pns)
-      expect(evaluator.environment["R2"]).to eq ElectrValue.new(100.0)
+      expect(evaluator.environment["R2"]).to eq ElectrValue.number(100.0)
     end
 
     it "gets the value" do
@@ -118,7 +118,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R1")
       result = evaluator.evaluate_pn(pns)
-      expect(result).to eq ElectrValue.new(100.0)
+      expect(result).to eq ElectrValue.number(100.0)
 
     end
 
@@ -133,7 +133,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R1 + R2")
       result = evaluator.evaluate_pn(pns)
-      expect(result).to eq ElectrValue.new(300.0)
+      expect(result).to eq ElectrValue.number(300.0)
     end
 
     it "can add a variable and a numeric" do
@@ -144,7 +144,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("R1 + 50")
       result = evaluator.evaluate_pn(pns)
-      expect(result).to eq ElectrValue.new(150.0)
+      expect(result).to eq ElectrValue.number(150.0)
     end
 
     it "can add a numeric and a variable" do
@@ -155,7 +155,7 @@ describe Evaluator do
 
       pns = Compiler.compile_to_pn("50 + R1")
       result = evaluator.evaluate_pn(pns)
-      expect(result).to eq ElectrValue.new(150.0)
+      expect(result).to eq ElectrValue.number(150.0)
     end
   end
 

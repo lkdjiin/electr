@@ -7,17 +7,17 @@ describe ElectrValue do
   describe "number" do
 
     it "holds a number" do
-      result = ElectrValue.new(10)
+      result = ElectrValue.number(10)
       expect(result.number).to eq 10
     end
 
     it "has type number" do
-      result = ElectrValue.new(10)
+      result = ElectrValue.number(10)
       expect(result.type).to eq :number
     end
 
     it "knows it is a number" do
-      result = ElectrValue.new(10)
+      result = ElectrValue.number(10)
       expect(result.number?).to eq true
       expect(result.error?).to eq false
     end
@@ -63,20 +63,20 @@ describe ElectrValue do
 
   describe "==" do
     it "is equal when all same members" do
-      a = ElectrValue.new(10, :number, "foo")
-      b = ElectrValue.new(10, :number, "foo")
+      a = ElectrValue.number(10)
+      b = ElectrValue.number(10)
       expect(a.object_id).not_to eq b.object_id
       expect(a).to eq b
     end
 
     it "isn't equal when different types" do
-      a = ElectrValue.new(10, :number, "foo")
-      b = ElectrValue.new(10, :error, "foo")
+      a = ElectrValue.number(10)
+      b = ElectrValue.error("foo")
       expect(a).not_to eq b
     end
 
     it "isn't equal when different classes" do
-      a = ElectrValue.new(10, :number, "foo")
+      a = ElectrValue.number(10)
       b = 10
       expect(a).not_to eq b
     end

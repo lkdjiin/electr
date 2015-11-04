@@ -9,7 +9,7 @@ describe Printer do
     it 'accepts ElectrValue objects' do
       expect {
 
-        Printer.run(ElectrValue.new(10.0))
+        Printer.run(ElectrValue.number(10.0))
 
       }.not_to raise_error
     end
@@ -25,7 +25,7 @@ describe Printer do
     it 'truncates integer like number' do
       expect {
 
-        Printer.run(ElectrValue.new(10.0))
+        Printer.run(ElectrValue.number(10.0))
 
       }.to output("10\n").to_stdout
     end
@@ -33,7 +33,7 @@ describe Printer do
     it 'rounds number' do
       expect {
 
-        Printer.run(ElectrValue.new(1.0 / 3))
+        Printer.run(ElectrValue.number(1.0 / 3))
 
       }.to output("0.3333333333\n").to_stdout
     end
