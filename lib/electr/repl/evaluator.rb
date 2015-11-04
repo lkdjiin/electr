@@ -58,13 +58,21 @@ module Electr
 
     # In case we got the name of a variable, replace it by its value.
     #
-    # wannabe_number - A Numeric number or the String name of a variable.
+    # wannabe_number - An object that can be coerced to a number. Either
+    #                  a Numeric number, the String name of a variable,
+    #                  or an ElectrValue.
     #
     # Returns a Numeric number.
     def ensure_number(wannabe_number)
+
       wannabe_number or raise(NilEvaluationError)
+
       if wannabe_number.is_a?(String)
         get_value_from_variable(wannabe_number)
+
+      elsif wannabe_number.respond_to?(:number)
+        wannabe_number.number
+
       else
         wannabe_number
       end
