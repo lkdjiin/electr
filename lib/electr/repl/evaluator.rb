@@ -15,10 +15,14 @@ module Electr
     # expose this variable.
     attr_reader :environment
 
-    # This method must return something meaningful for the Printer
-    # object.
+    # Do the evaluation.This method must return something meaningful for
+    # the Printer object.
     #
-    # See also Printer.
+    # list - A list of Pn item (Prefix notation).
+    #
+    # Returns the ElectrValue result of the evaluation.
+    #
+    # See also Printer and Pn.
     def evaluate_pn(list)
 
       while item = list.pop
@@ -38,27 +42,40 @@ module Electr
       # misnamed, as it can return nil amongst many other things ;)
       # It's certainly worth it to add a check to ensure that the stack
       # isn't empty and raise an error in such case.
-      ensure_number(@stack.pop)
+      ElectrValue.new(ensure_number(@stack.pop))
 
     rescue UnboundVariableError => e
-      puts "Error: unbound variable #{e.message}"
       @stack.clear
-      # Currently there is no type ElectrValue (or whatever) to return to
-      # the printer (see Printer). So I decided to return (and so to print)
-      # zero in case of error. This should not be the definitive behavior.
-      0
+      ElectrValue.error("Error: unbound variable #{e.message}")
 
     end
 
     private
 
     # In case we got the name of a variable, replace it by its value.
-    def ensure_number(val_or_var)
-      if val_or_var.is_a?(String)
-        @environment[val_or_var] or raise UnboundVariableError, val_or_var
+    #
+    # wannabe_number - A Numeric number or the String name of a variable.
+    #
+    # Returns a Numeric number.
+    def ensure_number(wannabe_number)
+      if wannabe_number.is_a?(String)
+        get_value_from_variable(wannabe_number)
       else
-        val_or_var
+        wannabe_number
       end
+    end
+
+    # Get the value of a variable stored in the environment.
+    #
+    # name - The String name of the variable.
+    #
+    # Returns the Numeric value of the variable.
+    #
+    # Raises UnboundVariableError if the variable don't exist in the
+    # environment.
+    def get_value_from_variable(name)
+      variable = @environment[name]
+      variable ? variable.number : raise(UnboundVariableError, name)
     end
 
     def constant(value)
@@ -79,7 +96,7 @@ module Electr
     def assign
       variable = @stack.pop
       value = ensure_number(@stack.pop)
-      @environment[variable] = value
+      @environment[variable] = ElectrValue.new(value)
       @stack.push(value)
     end
 
