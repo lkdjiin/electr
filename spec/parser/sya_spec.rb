@@ -68,6 +68,36 @@ describe Sya do
     expect(sya.run).to eq [added, a, b]
   end
 
+  specify 'R1 R2' do
+    a = LexicalUnit.variable('R1')
+    b = LexicalUnit.variable('R2')
+    added = LexicalUnit.operator('*')
+    sya = Sya.new([a, b])
+
+    # * R1 R2
+    expect(sya.run).to eq [added, a, b]
+  end
+
+  specify 'R1 5' do
+    a = LexicalUnit.variable('R1')
+    b = LexicalUnit.numeric('5')
+    added = LexicalUnit.operator('*')
+    sya = Sya.new([a, b])
+
+    # * R1 5
+    expect(sya.run).to eq [added, a, b]
+  end
+
+  specify '5 R1' do
+    a = LexicalUnit.numeric('5')
+    b = LexicalUnit.variable('R1')
+    added = LexicalUnit.operator('*')
+    sya = Sya.new([a, b])
+
+    # * R1 5
+    expect(sya.run).to eq [added, a, b]
+  end
+
   specify 'sqrt(49) + 1' do
     a = LexicalUnit.fname('sqrt')
     b = LexicalUnit.open_parenthesis

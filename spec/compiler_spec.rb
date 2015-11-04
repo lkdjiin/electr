@@ -97,4 +97,32 @@ describe Compiler do
 
   end
 
+  # The result is as expected if one specify the multiplication symbol:
+  #
+  #     R1 = 2
+  #     R2 = 5
+  #     R1 * R2
+  #     #=> 10
+  #
+  # The bug shows itself when one doesn't use *:
+  #
+  #     R1 = 2
+  #     R2 = 5
+  #     R1 R2
+  #     #=> 2
+  describe "Bug with multiplication and variables" do
+
+    specify do
+      result = Compiler.compile_to_pn("R1 R2")
+
+      expect(result[2].value).to eq "*"
+      expect(result[2].name).to eq "operator"
+      expect(result[3].value).to eq "R1"
+      expect(result[3].name).to eq "variable"
+      expect(result[4].value).to eq "R2"
+      expect(result[4].name).to eq "variable"
+    end
+
+  end
+
 end

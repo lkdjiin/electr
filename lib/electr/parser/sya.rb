@@ -90,12 +90,12 @@ module Electr
     end
 
     def maybe_insertion_needed?(unit)
-      unit_ahead && unit.number?
+      unit_ahead && (unit.number? || unit.variable?)
     end
 
     def insertion_needed?
       unit_ahead.number? || unit_ahead.open_parenthesis? ||
-      unit_ahead.fname? || unit_ahead.unary_minus?
+      unit_ahead.fname? || unit_ahead.unary_minus? || unit_ahead.variable?
     end
 
     def unit_ahead
