@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Modified
 - Reworded the help screen
+- Internal result of an evaluation is now a type
 
 
 ## [0.0.5] - 2015-09-28

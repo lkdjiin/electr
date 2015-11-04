@@ -63,6 +63,7 @@ module Electr
 
   # Element of a prefix notation.
   # TODO Pn is not a good name!
+  # TODO Move in its own file!
   class Pn
 
     def initialize(value, name)
