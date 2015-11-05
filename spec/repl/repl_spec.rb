@@ -24,7 +24,7 @@ describe Repl do
 
     it 'runs the toolchain' do
       repl = Repl.new(TestReader.new, Evaluator.new, TestPrinter)
-      expect(repl.run_once).to eq 3
+      expect(repl.run_once).to eq ElectrValue.number(3)
     end
 
   end

@@ -53,16 +53,22 @@ module Electr
     end
 
     def produce_next_token
+
       if begin_like_number?
         get_number
+
       elsif unary_minus?
         get_unary_minus
+
       elsif ONE_CHAR_OPERATORS.include?(@look_ahead)
         add_this_char
-      elsif @look_ahead == '('
+
+      elsif %w( \( \) = ).include?(@look_ahead)
         add_this_char
-      elsif @look_ahead == ')'
-        add_this_char
+
+      elsif variable?
+        get_variable
+
       else
         get_word
       end
@@ -84,6 +90,10 @@ module Electr
       @look_ahead == '-' && @codeline[@index] =~ /[a-z\(]/
     end
 
+    def variable?
+      @look_ahead =~ /[A-Z]/ && @codeline[@index] =~ /[0-9]/
+    end
+
     def get_unary_minus
       @look_ahead = UNARY_MINUS_INTERNAL_SYMBOL
       add_look_ahead
@@ -99,9 +109,15 @@ module Electr
       @token
     end
 
+    def get_variable
+      add_look_ahead
+      add_look_ahead while @look_ahead =~ /[0-9]/
+      @token
+    end
+
     def get_word
       add_look_ahead while @look_ahead =~ /[\w√]/
-      # At this step, an empty token signify that we have reached an
+      # At this point, an empty token means that we have reached an
       # illegal word.
       raise(SyntaxError, @codeline) if @token.empty?
       @token

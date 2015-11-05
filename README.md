@@ -23,12 +23,6 @@ proof of concept. And then, maybe, a more portable version in C.
 Tell me what you think on [twitter](https://twitter.com/lkdjiin) or better,
 open an issue here on Github. In any cases feel free to start a discussion.
 
-The current version is an early one:
-
-1. Don't expect too much
-2. Expect a lot of bugs
-3. Please be kind enough to report any bugs here in Github
-
 ## Installation
 
 Install it with:
@@ -54,7 +48,7 @@ switch:
     120
 
 To display the AST instead of doing the computation, use the `--ast` switch
-(*this is intended only for the developers*):
+(*this is normally intended only for the developers*):
 
     $ electr --ast -e "3V / 25mA"
     ast
@@ -63,17 +57,14 @@ To display the AST instead of doing the computation, use the `--ast` switch
           value ::= 3V
           value ::= 25mA
 
-### Resistors in serie
+### Some simple computations
 
-Start simple to illustrate the addition. We have a 10,000 Ohm resistor (10k) and
-a 200 Ohm resistor (200R):
+We have a 10,000 Ohm resistor (10k) and a 200 Ohm resistor (200R):
 
     E> 10k + 200R
     10200
 
 *Should it be `K`, `k`, `kΩ` or the three is still open to debate.*
-
-### Ohm's law
 
 Divide Volts (V) by milliamps (mA) to get some Ohms:
 
@@ -85,6 +76,8 @@ There is no symbol for the multiplication. Simply put values side by side:
     E> 1mA 3k
     3
 
+Actually you *can* use the `*` for the multiplication if you really want to ;)
+
 ### Frequency of an oscillator
 
 A little bit more complex is the computation of a frequency for an oscillator.
@@ -94,6 +87,28 @@ is in Hertz.
 
     E> 1 / (2 pi 0.5uF sqrt(11k 22k))
     20.4617344581
+
+### Variables
+
+A variable name must be an uppercase letter followed by a digit or more:
+
+    R1 = 22k
+
+The same formula as above can be written using variables:
+
+    E> C1 = 0.5uF
+    E> R1 = 11k
+    E> R2 = 22k
+    E> 1 / (2 pi C1 sqrt(R1 R2))
+    20.4617344581
+
+Assignments can be chained:
+
+    E> R1 = R2 = R3 = 100
+    E> R3
+    100
+    E> R1 + R2 + R3
+    300
 
 ### Units, Prefixes and Abbreviations
 
@@ -133,26 +148,11 @@ n       | nano farad
 p       | pico farad
 k K     | kilo ohm
 
-### What is missing?
-
-Electr is at a very early stage and it miss a lot of (basic) things!
-You can expect that the following features will be implemented in the
-next couple of days/weeks:
-
-- [x] Negative numbers
-- [x] Floating point number without a leading zero (ie `.678`)
-- [x] 10_000 or 10,000 will be the same as 10000
-- [x] More builtin functions (sin, cos, tan)
-- [x] Exponent
-- [x] Readline lib in the REPL for a better user experience
-- [x] All units and prefix used in electronic
-- [x] `*` for the multiplication if one want to
-- [x] √ for an alternative to square root
-- [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-
 ## What's next?
 
-Maybe Electr could infer the resulting unit:
+Here are some features I would like to implement soon.
+
+Electr could infer the resulting unit:
 
     E> 10k + 200R
     10.2kΩ
@@ -161,8 +161,8 @@ Maybe Electr could infer the resulting unit:
     E> 3V / 1mA
     3kΩ
 
-One are less prone to typing errors (less parenthesis) if one enter a complex
-expression on two lines:
+One are less prone to typing errors (less parenthesis) if one could enter a
+complex expression on two lines:
 
     E> 1 /
     E> 2 pi 0.5uF sq(11K 22K)
@@ -181,14 +181,6 @@ ask us for the components values, then gives us the result.
     C2=?> 470pF
     7.04kHz
 
-Or acts like a tiny programming language.
-
-    E> R1 = 33k
-    E> C1 = 1000pF
-    E> C2 = 470pF
-    E> 1 / (2 pi R1 sq(C1 C2))
-    7.04kHz
-
 Why not having custom functions?
 
     E> func = { 1 / (2 pi R1 sq(C1 C2)) }
@@ -197,17 +189,7 @@ Why not having custom functions?
 
 *The above syntax is just one possibility amongst a lot of others.*
 
-## Contributing
-
-1. Fork it ( https://github.com/lkdjiin/electr/fork )
-2. **PLEASE Create your feature branch** (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
 ## Alternatives
-
-Some people point me to two existing softwares:
 
 - [Frink](https://futureboy.us/frinkdocs/)
 - [GNU Units](https://en.wikipedia.org/wiki/GNU_Units)
@@ -220,3 +202,48 @@ furlongs ;)
 ## License
 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Contributing
+
+### Good
+
+1. Fork it ( https://github.com/lkdjiin/electr/fork )
+2. **PLEASE Create your feature branch** (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+### Better
+
+Before anything else, please open an issue to say what you are intended to do.
+
+### What to do?
+
+You want to help but you don't know where to start? Here are some ideas.
+The list is more or less sorted. But feel free to pick any item you want.  If
+an item is marked as *pending* and you want to work on it, please first contact
+me.
+
+- [ ] Display a nice message on any error (not an abrupt fail as it is for now)
+- [ ] Add interactivity (see «Beyond the calculator» section in this readme)
+- [ ] Reply with a unit (*pending*)
+- [ ] Write 10mA as well as 10 mA
+- [ ] Use `;` to separate expressions (useful for command line option -e)
+- [ ] Underscore value. The `_` refers to the last computed value.
+- [ ] Add autocompletion with the readline library. For example see http://bogojoker.com/readline/
+- [ ] `foo()` should display an error message like "Error: Undefined function 'foo'"
+- [ ] BUG Unknown function `foo(2)` evaluate to 2. Instead it must report an error
+- [ ] A command to quit, instead of Ctrl-C. Should it be `quit`, `exit`, `quit()`, `exit()`?
+- [ ] Is there any benefits to have the @name attribute of an AST node as a symbol instead of a string?
+- [ ] Be sure that the AST can be unparsed (prove it, do it)
+- [ ] Simplify the sequences of multiplication in the AST
+- [ ] Quit gracefuly with Ctrl+d
+
+Here are some ideas to experiment:
+
+- exponent shortcuts `^^` for `^ 2`, `^^^` for `^ 3`, etc
+- Give multiplication an higher precedence than division: it can remove the need for parenthesis very often.
+- Compute Electr code from a source file
+- Give a try to travelling ruby (http://phusion.github.io/traveling-ruby/). It
+  could be very handy for people without knowledge of Ruby.
+- Colors in the console!

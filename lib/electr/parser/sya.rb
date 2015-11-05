@@ -4,6 +4,8 @@ module Electr
   #
   # It produces prefix notation instead of the most common reverse
   # polish notation to ease producing the AST.
+  #
+  # For a starter, see https://en.wikipedia.org/wiki/Shunting-yard_algorithm
   class Sya
 
     # Creates a new Sya.
@@ -19,10 +21,10 @@ module Electr
 
     # Public: Run the Shunting Yard Algorithm.
     #
-    # Returns Array of LexicalUnit ordered with prefix notation.
+    # Returns Array of LexicalUnit ordered in prefix notation.
     def run
       while unit = @units.pop
-        if unit.number?
+        if unit.number? || unit.variable?
           @output.push(unit)
         elsif unit.fname?
           @operator.push(unit)
@@ -33,19 +35,17 @@ module Electr
                 @operator.last.type != :closed_parenthesis
             @output.push(@operator.pop)
           end
-          rparen = @operator.pop
+          @operator.pop # Pop the right parenthesis.
           if @operator.last && @operator.last.type == :fname
             @output.push(@operator.pop)
           end
           # If the stack runs out without finding a right parenthesis,
           # then there are mismatched parentheses.
-        elsif unit.operator?
-          while @operator.size > 0 &&
-                (@operator.last.operator? || @operator.last.fname?) &&
-                (precedence(unit) < precedence(@operator.last))
-            @output.push(@operator.pop)
-          end
+        elsif unit.operator? || unit.assign?
+
+          @output.push(@operator.pop) while rules_for_operator_are_met(unit)
           @operator.push(unit)
+
         end
       end
 
@@ -55,6 +55,39 @@ module Electr
     end
 
     private
+
+    def rules_for_operator_are_met(unit)
+      size_rule && (operator_rule && associative_rule(unit))
+    end
+
+    def size_rule
+      @operator.size > 0
+    end
+
+    def operator_rule
+      test = @operator.last
+      test.operator? || test.fname? || test.assign?
+    end
+
+    def associative_rule(test)
+      left_associative_rule(test) || right_associative_rule(test)
+    end
+
+    def left_associative_rule(test)
+      left_associative(test) && left_assoc_precedence_rule(test)
+    end
+
+    def left_assoc_precedence_rule(test)
+      precedence(test) < precedence(@operator.last)
+    end
+
+    def right_associative_rule(test)
+      right_associative(test) && right_assoc_precedence_rule(test)
+    end
+
+    def right_assoc_precedence_rule(test)
+      precedence(test) <= precedence(@operator.last)
+    end
 
     # Look up the precedence of an operator.
     #
@@ -66,6 +99,32 @@ module Electr
         PRECEDENCE['()'][:val]
       else
         PRECEDENCE[operator.value][:val]
+      end
+    end
+
+    # Check the left associativity of an operator.
+    #
+    # operator - LexicalUnit operator.
+    #
+    # Returns true if the operator is left associative, false otherwise.
+    def left_associative(operator)
+      if operator.fname?
+        PRECEDENCE['()'][:assoc] == 'L'
+      else
+        PRECEDENCE[operator.value][:assoc] == 'L'
+      end
+    end
+
+    # Check the right associativity of an operator.
+    #
+    # operator - LexicalUnit operator.
+    #
+    # Returns true if the operator is right associative, false otherwise.
+    def right_associative(operator)
+      if operator.fname?
+        PRECEDENCE['()'][:assoc] == 'R'
+      else
+        PRECEDENCE[operator.value][:assoc] == 'R'
       end
     end
 
@@ -90,12 +149,12 @@ module Electr
     end
 
     def maybe_insertion_needed?(unit)
-      unit_ahead && unit.number?
+      unit_ahead && (unit.number? || unit.variable?)
     end
 
     def insertion_needed?
       unit_ahead.number? || unit_ahead.open_parenthesis? ||
-      unit_ahead.fname? || unit_ahead.unary_minus?
+      unit_ahead.fname? || unit_ahead.unary_minus? || unit_ahead.variable?
     end
 
     def unit_ahead

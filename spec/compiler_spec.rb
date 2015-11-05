@@ -17,6 +17,8 @@ describe Compiler do
     "3 (2 + 1)",
     "2 sqrt(3)",
     "2 pi 0.5uF sqrt(11K 22K)",
+    "1,234 + 1_234",
+    "C1 = 0.1",
   ]
 
   specify "#compile_to_ast" do
@@ -26,9 +28,38 @@ describe Compiler do
     end
   end
 
-  specify "#compile_to_pn" do
-    result = Compiler.compile_to_pn("2 pi")
-    expect(result).to be_a Array
+  describe "number" do
+
+    it "allows , and _" do
+      result = Compiler.compile_to_pn("1,234 + 1_234")
+      expect(result[2].name).to eq "operator"
+      expect(result[2].value).to eq "+"
+      expect(result[3].name).to eq "numeric"
+      expect(result[3].value).to eq "1,234"
+      expect(result[4].name).to eq "numeric"
+      expect(result[4].value).to eq "1_234"
+    end
+  end
+
+  describe "Prefix notation" do
+
+    specify "#compile_to_pn" do
+      result = Compiler.compile_to_pn("2 pi")
+      expect(result).to be_a Array
+    end
+
+    specify "assignment" do
+      result = Compiler.compile_to_pn("R1 = 100")
+      expect(result[0].name).to eq "ast"
+      expect(result[1].name).to eq "root"
+      expect(result[2].value).to eq "="
+      expect(result[2].name).to eq "operator"
+      expect(result[3].value).to eq "R1"
+      expect(result[3].name).to eq "variable"
+      expect(result[4].value).to eq "100"
+      expect(result[4].name).to eq "numeric"
+    end
+
   end
 
   describe "Bug in the AST with `sin(pi / 2) + 1`" do
@@ -62,6 +93,34 @@ describe Compiler do
       expect(operator.size).to eq 2
       funcargs = operator.children[0].children[1]
       expect(funcargs.size).to eq 1
+    end
+
+  end
+
+  # The result is as expected if one specify the multiplication symbol:
+  #
+  #     R1 = 2
+  #     R2 = 5
+  #     R1 * R2
+  #     #=> 10
+  #
+  # The bug shows itself when one doesn't use *:
+  #
+  #     R1 = 2
+  #     R2 = 5
+  #     R1 R2
+  #     #=> 2
+  describe "Bug with multiplication and variables" do
+
+    specify do
+      result = Compiler.compile_to_pn("R1 R2")
+
+      expect(result[2].value).to eq "*"
+      expect(result[2].name).to eq "operator"
+      expect(result[3].value).to eq "R1"
+      expect(result[3].name).to eq "variable"
+      expect(result[4].value).to eq "R2"
+      expect(result[4].name).to eq "variable"
     end
 
   end
