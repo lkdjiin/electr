@@ -4,6 +4,8 @@ module Electr
   #
   # It produces prefix notation instead of the most common reverse
   # polish notation to ease producing the AST.
+  #
+  # For a starter, see https://en.wikipedia.org/wiki/Shunting-yard_algorithm
   class Sya
 
     # Creates a new Sya.
@@ -19,7 +21,7 @@ module Electr
 
     # Public: Run the Shunting Yard Algorithm.
     #
-    # Returns Array of LexicalUnit ordered with prefix notation.
+    # Returns Array of LexicalUnit ordered in prefix notation.
     def run
       while unit = @units.pop
         if unit.number? || unit.variable?
@@ -41,15 +43,9 @@ module Electr
           # then there are mismatched parentheses.
         elsif unit.operator? || unit.assign?
 
-          # Can you read that? I can't.
-          while @operator.size > 0 &&
-                ((@operator.last.operator? || @operator.last.fname? || @operator.last.assign?) &&
-                (left_associative(unit) && (precedence(unit) < precedence(@operator.last))) ||
-                (right_associative(unit) && (precedence(unit) <= precedence(@operator.last))))
-
-            @output.push(@operator.pop)
-          end
+          @output.push(@operator.pop) while rules_for_operator_are_met(unit)
           @operator.push(unit)
+
         end
       end
 
@@ -59,6 +55,39 @@ module Electr
     end
 
     private
+
+    def rules_for_operator_are_met(unit)
+      size_rule && (operator_rule && associative_rule(unit))
+    end
+
+    def size_rule
+      @operator.size > 0
+    end
+
+    def operator_rule
+      test = @operator.last
+      test.operator? || test.fname? || test.assign?
+    end
+
+    def associative_rule(test)
+      left_associative_rule(test) || right_associative_rule(test)
+    end
+
+    def left_associative_rule(test)
+      left_associative(test) && left_assoc_precedence_rule(test)
+    end
+
+    def left_assoc_precedence_rule(test)
+      precedence(test) < precedence(@operator.last)
+    end
+
+    def right_associative_rule(test)
+      right_associative(test) && right_assoc_precedence_rule(test)
+    end
+
+    def right_assoc_precedence_rule(test)
+      precedence(test) <= precedence(@operator.last)
+    end
 
     # Look up the precedence of an operator.
     #
@@ -73,6 +102,11 @@ module Electr
       end
     end
 
+    # Check the left associativity of an operator.
+    #
+    # operator - LexicalUnit operator.
+    #
+    # Returns true if the operator is left associative, false otherwise.
     def left_associative(operator)
       if operator.fname?
         PRECEDENCE['()'][:assoc] == 'L'
@@ -81,6 +115,11 @@ module Electr
       end
     end
 
+    # Check the right associativity of an operator.
+    #
+    # operator - LexicalUnit operator.
+    #
+    # Returns true if the operator is right associative, false otherwise.
     def right_associative(operator)
       if operator.fname?
         PRECEDENCE['()'][:assoc] == 'R'
