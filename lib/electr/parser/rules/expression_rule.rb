@@ -71,7 +71,7 @@ module Electr
           func.add_child(func_args)
           node.add_child(func)
 
-        elsif unit && unit.operator?
+        elsif unit && (unit.operator? || unit.assign?)
           new_node = OperatorAST.new(unit.value)
           dig_series(new_node)
           node.add_child(new_node)

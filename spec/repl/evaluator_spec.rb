@@ -78,6 +78,16 @@ describe Evaluator do
       expect(result).to eq ElectrValue.hidden(100.0)
     end
 
+    it "does chain assignment" do
+      evaluator = Evaluator.new
+
+      pns = Compiler.compile_to_pn("R1 = R2 = 100")
+      evaluator.evaluate_pn(pns)
+
+      expect(evaluator.environment["R1"]).to eq ElectrValue.number(100.0)
+      expect(evaluator.environment["R2"]).to eq ElectrValue.number(100.0)
+    end
+
     it "retains variable" do
       evaluator = Evaluator.new
 
