@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Electr::VERSION
   spec.authors       = ["lkdjiin"]
   spec.email         = ["xavier.nayrac@gmail.com"]
-  spec.summary       = %q{Interactive language for electronic formulas}
+  spec.summary       = %q{Interactive tiny language for electronic formulas}
   spec.homepage      = "https://github.com/lkdjiin/electr"
   spec.license       = "MIT"
 
