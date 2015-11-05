@@ -23,12 +23,6 @@ proof of concept. And then, maybe, a more portable version in C.
 Tell me what you think on [twitter](https://twitter.com/lkdjiin) or better,
 open an issue here on Github. In any cases feel free to start a discussion.
 
-The current version is an early one:
-
-1. Don't expect too much
-2. Expect a lot of bugs
-3. Please be kind enough to report any bugs here in Github
-
 ## Installation
 
 Install it with:
@@ -54,7 +48,7 @@ switch:
     120
 
 To display the AST instead of doing the computation, use the `--ast` switch
-(*this is intended only for the developers*):
+(*this is normally intended only for the developers*):
 
     $ electr --ast -e "3V / 25mA"
     ast
@@ -63,17 +57,14 @@ To display the AST instead of doing the computation, use the `--ast` switch
           value ::= 3V
           value ::= 25mA
 
-### Resistors in serie
+### Some simple computations
 
-Start simple to illustrate the addition. We have a 10,000 Ohm resistor (10k) and
-a 200 Ohm resistor (200R):
+We have a 10,000 Ohm resistor (10k) and a 200 Ohm resistor (200R):
 
     E> 10k + 200R
     10200
 
 *Should it be `K`, `k`, `kΩ` or the three is still open to debate.*
-
-### Ohm's law
 
 Divide Volts (V) by milliamps (mA) to get some Ohms:
 
@@ -84,6 +75,8 @@ There is no symbol for the multiplication. Simply put values side by side:
 
     E> 1mA 3k
     3
+
+Actually you *can* use the `*` for the multiplication if you really want to ;)
 
 ### Frequency of an oscillator
 
@@ -110,7 +103,6 @@ The same formula as above can be written using variables:
     20.4617344581
 
 Assignments can be chained:
-
 
     E> R1 = R2 = R3 = 100
     E> R3
@@ -156,26 +148,11 @@ n       | nano farad
 p       | pico farad
 k K     | kilo ohm
 
-### What is missing?
-
-Electr is at a very early stage and it miss a lot of (basic) things!
-You can expect that the following features will be implemented in the
-next couple of days/weeks:
-
-- [x] Negative numbers
-- [x] Floating point number without a leading zero (ie `.678`)
-- [x] 10_000 or 10,000 will be the same as 10000
-- [x] More builtin functions (sin, cos, tan)
-- [x] Exponent
-- [x] Readline lib in the REPL for a better user experience
-- [x] All units and prefix used in electronic
-- [x] `*` for the multiplication if one want to
-- [x] √ for an alternative to square root
-- [ ] Shortcuts for function's names (ie sq and sqr for sqrt)
-
 ## What's next?
 
-Maybe Electr could infer the resulting unit:
+Here are some features I would like to implement soon.
+
+Electr could infer the resulting unit:
 
     E> 10k + 200R
     10.2kΩ
@@ -184,8 +161,8 @@ Maybe Electr could infer the resulting unit:
     E> 3V / 1mA
     3kΩ
 
-One are less prone to typing errors (less parenthesis) if one enter a complex
-expression on two lines:
+One are less prone to typing errors (less parenthesis) if one could enter a
+complex expression on two lines:
 
     E> 1 /
     E> 2 pi 0.5uF sq(11K 22K)
@@ -213,8 +190,6 @@ Why not having custom functions?
 *The above syntax is just one possibility amongst a lot of others.*
 
 ## Alternatives
-
-Some people point me to two existing softwares:
 
 - [Frink](https://futureboy.us/frinkdocs/)
 - [GNU Units](https://en.wikipedia.org/wiki/GNU_Units)

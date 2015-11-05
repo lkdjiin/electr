@@ -1,4 +1,4 @@
 module Electr
   VERSION = "0.0.6"
-  CODENAME = "Volage Variables"
+  CODENAME = "Vacuist Variables"
 end
