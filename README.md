@@ -109,6 +109,15 @@ The same formula as above can be written using variables:
     E> 1 / (2 pi C1 sqrt(R1 R2))
     20.4617344581
 
+Assignments can be chained:
+
+
+    E> R1 = R2 = R3 = 100
+    E> R3
+    100
+    E> R1 + R2 + R3
+    300
+
 ### Units, Prefixes and Abbreviations
 
 Electr knows the following units:

@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Variables! One can now doing things like `R1 = 100`, `R1 + 100`,
   `R1 R2` and so forth. The name of a variable must be an uppercase letter
   followed by 1 (or more) digit.
+  Assignment can be chained, that is you can write `R1 = R2 = 100`.
 - A new section «What to do?» in the readme, as a TODO list.
 
 ### Modified
