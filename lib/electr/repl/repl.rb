@@ -17,11 +17,16 @@ module Electr
 
     def run
       puts BANNER
-      run_once while true
+      loop do
+        got_input = run_once
+        break unless got_input
+      end
     end
 
     def run_once
-      @printer.run(@eval.evaluate_pn(@reader.run))
+      input = @reader.run
+      return false if input.nil?
+      @printer.run(@eval.evaluate_pn(input))
     end
 
   end

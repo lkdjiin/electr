@@ -9,6 +9,7 @@ module Electr
 
     def run
       line = @readline.readline(@prompt, true)
+      return if line.nil?
       Compiler.compile_to_pn(line)
     end
 
