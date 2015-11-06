@@ -79,8 +79,8 @@ module Electr
     end
 
     def begin_like_number?
-      @look_ahead =~ /[0-9.]/ ||
-      (@look_ahead == '-' && @codeline[@index] =~ /[0-9.]/)
+      @look_ahead =~ /[\d.]/ ||
+      (@look_ahead == '-' && @codeline[@index] =~ /[\d.]/)
     end
 
     def unary_minus?
@@ -91,7 +91,7 @@ module Electr
     end
 
     def variable?
-      @look_ahead =~ /[A-Z]/ && @codeline[@index] =~ /[0-9]/
+      @look_ahead =~ /[A-Z]/ && @codeline[@index] =~ /\d/
     end
 
     def get_unary_minus
@@ -102,7 +102,7 @@ module Electr
 
     def get_number
       add_look_ahead if @look_ahead == '-'
-      add_look_ahead while @look_ahead =~ /[0-9._,]/
+      add_look_ahead while @look_ahead =~ /[\d._,]/
       if @token[-1] != '.'
         add_look_ahead while @look_ahead =~ /[A-Za-zΩ℧μ]/
       end
@@ -111,7 +111,7 @@ module Electr
 
     def get_variable
       add_look_ahead
-      add_look_ahead while @look_ahead =~ /[0-9]/
+      add_look_ahead while @look_ahead =~ /\d/
       @token
     end
 

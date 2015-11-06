@@ -31,7 +31,7 @@ module Electr
 
     def find_unit
       index = 0
-      index += 1 while @value[index] =~ /[0-9._,-]/
+      index += 1 while @value[index] =~ /[\d._, -]/
       @unit = @value[index..-1]
     end
 
