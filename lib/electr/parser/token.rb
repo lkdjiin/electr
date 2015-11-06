@@ -5,7 +5,7 @@ module Electr
 
       def numeric?
         # I know it isn't the best regexp I can do…
-        self =~ /\A-?[0-9\.,_]+\z/
+        self =~ /\A-?[\d\.,_]+\z/
       end
 
       def operator?
@@ -18,11 +18,11 @@ module Electr
 
       def value?
         # The unit part is redondant with Tokenizer.
-        self =~ /[0-9.][A-Za-zΩ℧μ]{1,}\z/
+        self =~ /[\d.] ?[A-Za-zΩ℧μ]{1,}\z/
       end
 
       def variable?
-        self =~ /\A[A-Z][0-9]+\z/
+        self =~ /\A[A-Z]\d+\z/
       end
 
     end

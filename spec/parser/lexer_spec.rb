@@ -17,6 +17,10 @@ describe Lexer do
     [ :operator, UNARY_MINUS_INTERNAL_SYMBOL ],
     [ :constant, "pi" ],
     [ :value, "11K" ],
+    [ :value, "1A" ],
+    [ :value, "1mA" ],
+    [ :value, "1 A" ],
+    [ :value, "1 mA" ],
     [ :value, "11kΩ" ],
     [ :name, "foobar" ],
     [ :fname, "sqrt" ],
@@ -50,10 +54,12 @@ describe Lexer do
 
     it "accepts known units" do
       expect { Lexer.lexify("1A") }.not_to raise_error
+      expect { Lexer.lexify("1 A") }.not_to raise_error
     end
 
     it "accepts known prefixes" do
       expect { Lexer.lexify("1mA") }.not_to raise_error
+      expect { Lexer.lexify("1 mA") }.not_to raise_error
     end
 
   end

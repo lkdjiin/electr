@@ -45,5 +45,9 @@ describe LexicalUnit::Value do
       end
     end
 
+    it "accepts a space between value and unit" do
+      expect{LexicalUnit::Value.assert('1 mA')}.not_to raise_error
+    end
+
   end
 end
