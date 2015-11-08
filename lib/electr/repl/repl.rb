@@ -26,7 +26,7 @@ module Electr
     def run_once
       input = @reader.run
       return false if input.nil?
-      @printer.run(@eval.evaluate_pn(input))
+      @printer.run(@eval.evaluate_pn(input)) || true
     end
 
   end
